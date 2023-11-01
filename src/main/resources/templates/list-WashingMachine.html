@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=divice-width, initial-scale=1.0">
+    <title>WashingMachine List</title>
+</head>
+<body>
+    <h1>WashingMachine List</h1>
+    <a href="/add-WashingMachine/">Add New WashingMachine</a>
+    <ul>
+        <li th:each="WashingMachine : ${washingMachines}">
+            <a th:href="@{/delete-WashingMachine/{id}(id=${WashingMachine.id})}">Delete</a>
+            <span th:text="${WashingMachine.code}"></span>
+            <span th:text="${WashingMachine.capacity}"></span>
+        </li>
+    </ul>
+</body>
+</html>

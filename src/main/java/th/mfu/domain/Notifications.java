@@ -1,4 +1,4 @@
-package th.mfu.domain;
+/*package th.mfu.domain;
 
 import java.util.Date;
 
@@ -32,3 +32,4 @@ public class Notifications {
     }
 
 }
+*/

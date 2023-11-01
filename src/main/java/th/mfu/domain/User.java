@@ -1,4 +1,4 @@
-package th.mfu.domain;
+/*package th.mfu.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -54,3 +54,4 @@ public class User {
     }
 
 }
+*/

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add WashingMachine</title>
+</head>
+<body>
+    <h1>Add WashingMachine</h1>
+    <form th:action="@{/WashingMachines}" th:object="${washingMachine}" method="post">
+
+        <label for="code">code :</label>
+        <input type="text" id="code" th:field="*{code}" required><br>
+
+        <lable for="capacity">capacity :</lable>
+        <input type="text" id="capacity" th:field="*{capacity}" required><br>
+
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
