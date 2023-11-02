@@ -1,4 +1,4 @@
-/*package th.mfu.domain;
+package th.mfu.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,4 +39,3 @@ public class Admin {
     }
 
 }
-*/

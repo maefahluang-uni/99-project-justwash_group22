@@ -1,4 +1,4 @@
-package th.mfu;
+package th.mfu.controller;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -23,25 +23,26 @@ public class WashingMachineController {
     private int nextId = 1;
 
     private int date;
+
     @InitBinder
     public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", locale);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-    @GetMapping ("/WashingMachines")
+    @GetMapping("/WashingMachines")
     public String listWashingMatchine(Model model) {
         model.addAttribute("washingMachines", washingMachines.values());
         return "list-WashingMachine";
     }
 
-    @GetMapping ("/add-WashingMachine")
+    @GetMapping("/add-WashingMachine")
     public String addWashingMachineForm(Model model) {
         model.addAttribute("washingMachine", new WashingMachine());
         return "add-WashingMachine-form";
     }
 
-    @PostMapping ("/WashingMachines")
+    @PostMapping("/WashingMachines")
     public String saveWashingMacine(@ModelAttribute WashingMachine washingMachine) {
         washingMachine.setId(nextId);
         washingMachines.put(nextId, washingMachine);
@@ -49,16 +50,16 @@ public class WashingMachineController {
         return "redirect:/WashingMachines";
     }
 
-    @GetMapping ("/delete-WashingMachine/{id}")
+    @GetMapping("/delete-WashingMachine/{id}")
     public String deleteWashingMachine(@PathVariable int id) {
         washingMachines.remove(id);
         return "redirect:/WashingMachines";
     }
 
-    @GetMapping ("/delete-WashingMachine")
+    @GetMapping("/delete-WashingMachine")
     public String removeAllWashingMachines(Model model) {
         washingMachines.clear();
         nextId = 1;
-        return "redirect:/WashingMachinse";
+        return "redirect:/WashingMachines";
     }
 }
