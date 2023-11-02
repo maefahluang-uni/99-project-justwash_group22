@@ -15,7 +15,7 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String reservation_num;
+    private int id;
     private Date rejected_time;
     private Date start_time;
     private Date end_time;
@@ -28,12 +28,12 @@ public class Reservation {
     @JoinColumn(name = "admin_id")
     private Admin admin;
 
-    public String getReservation_num() {
-        return reservation_num;
+    public int getId() {
+        return id;
     }
 
-    public void setReservation_num(String reservation_num) {
-        this.reservation_num = reservation_num;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getRejected_time() {

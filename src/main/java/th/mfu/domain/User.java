@@ -13,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String User_id;
+    private int id;
     private String username;
     private String passsword;
 
@@ -21,12 +21,12 @@ public class User {
     @JoinColumn(name = "reservation_num")
     private Reservation reservation;
 
-    public String getUser_id() {
-        return User_id;
+    public int getId() {
+        return id;
     }
 
-    public void setUser_id(String user_id) {
-        this.User_id = user_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {

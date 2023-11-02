@@ -19,7 +19,7 @@ import th.mfu.domain.Reservation;
 
 @Controller
 public class ReservationController {
-    private HashMap<Integer, Reservation> washingMachines = new HashMap<Integer, Reservation>();
+    private HashMap<Integer, Reservation> reservations = new HashMap<Integer, Reservation>();
     private int nextId = 1;
 
     private int date;
@@ -32,7 +32,7 @@ public class ReservationController {
 
     @GetMapping("/Reservations")
     public String listReservation(Model model) {
-        model.addAttribute("Reservations", washingMachines.values());
+        model.addAttribute("Reservations", reservations.values());
         return "list-Reservation";
     }
 
@@ -42,10 +42,10 @@ public class ReservationController {
         return "add-Reservation-form";
     }
 
-    @PostMapping ("/Reservations")
+    @PostMapping("/Reservations")
     public String saveReservation(@ModelAttribute Reservation reservation) {
         reservation.setId(nextId);
-        washingMachines.put(nextId, reservation);
+        reservations.put(nextId, reservation);
         nextId++;
         return "redirect:/Reservations";
     }

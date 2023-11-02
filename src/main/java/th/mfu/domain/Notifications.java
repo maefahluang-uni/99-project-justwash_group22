@@ -12,15 +12,15 @@ public class Notifications {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int notification_id;
+    private int id;
     private Date datetime;
 
-    public int getNotification_id() {
-        return notification_id;
+    public int getId() {
+        return id;
     }
 
-    public void setNotification_id(int notification_id) {
-        this.notification_id = notification_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getDatetime() {
