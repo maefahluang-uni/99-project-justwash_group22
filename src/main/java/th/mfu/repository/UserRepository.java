@@ -13,14 +13,10 @@ package th.mfu.repository;
  * 
  * public interface UserRepository extends CrudRepository<User, Integer> {
  * public List<User> findByWashingMachineId(Integer washingmachineId);
- * 
  * public List<User> deleteByWashingMachineId(Integer id);
- * 
- * public List<User> findByBookedFalseAndConcertId(Long concertId);
- * 
- * public List<Seat> findByBookedTrueAndConcertId(Long concertId);
- * 
- * public List<Seat> findByBookedTrue();
+ * public List<User> findByBookedFalseAndWashingMachineId(Long concertId);
+ * public List<User> findByBookedTrueAndWashingMachineId(Long concertId);
+ * public List<User> findByBookedTrue();
  * 
  * }
  */
