@@ -53,4 +53,7 @@ public class User {
         this.reservation = reservation;
     }
 
+    public void setBooked(boolean b) {
+    }
+
 }
