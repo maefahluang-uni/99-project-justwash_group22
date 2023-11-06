@@ -8,15 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-//@Entity
+@Entity
 public class WashingMachine {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    /*@OneToMany(cascade = CascadeType.ALL)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "reservation_num")
     private Reservation reservation;
-    */
+    
     private int id;
     private String code;
     private String status;
@@ -45,9 +45,4 @@ public class WashingMachine {
     public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
-
-   
-    
-    
-
 }
