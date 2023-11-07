@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import th.mfu.domain.User;
+import th.mfu.repository.UserRepository;
 
 @Controller
 @RequestMapping("/users")
@@ -37,7 +38,7 @@ public class UserController {
     @PostMapping("/users/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
 
-        if (userRepo.containsKey(user.getUsername())) {
+        if (User.containsKey(user.getUsername())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
         } 
 
