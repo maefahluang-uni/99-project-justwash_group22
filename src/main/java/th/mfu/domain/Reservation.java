@@ -60,4 +60,20 @@ public class Reservation {
         this.end_time = end_time;
     }
 
+    public Notifications getNotifications() {
+        return Notifications;
+    }
+
+    public void setNotifications(Notifications notifications) {
+        Notifications = notifications;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+    
 }

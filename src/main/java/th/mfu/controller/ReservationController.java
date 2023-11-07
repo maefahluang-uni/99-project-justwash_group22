@@ -1,9 +1,7 @@
 package th.mfu.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -20,9 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import th.mfu.domain.WashingMachine; //reservation
-import th.mfu.domain.Reservation; //concert
-import th.mfu.domain.User; //seats
+import th.mfu.domain.WashingMachine;
+import th.mfu.domain.Reservation;
+import th.mfu.domain.User;
 import th.mfu.repository.ReservationRepository;
 import th.mfu.repository.UserRepository;
 import th.mfu.repository.WashingMachineRepository;
@@ -60,7 +58,7 @@ public class ReservationController {
     @PostMapping("/book/reservations/{reservationId}")
     public String reserveUser(@ModelAttribute WashingMachine washingMachine, @PathVariable Integer reservationId,
             Model model) {
-        User user = userRepo.findById(washingMachine.getUser().getId()).get();
+        org.apache.tomcat.jni.User user = userRepo.findById(washingMachine.getReservation().getId()).get();
         user.setBooked(true);
         userRepo.save(user);
         washingmachineRepo.save(washingMachine);

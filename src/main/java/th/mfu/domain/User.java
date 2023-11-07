@@ -53,6 +53,10 @@ public class User {
         this.reservation = reservation;
     }
 
+    public static boolean containsKey(String username2) {
+        return false;
+    }
+
     public void setBooked(boolean b) {
     }
 
