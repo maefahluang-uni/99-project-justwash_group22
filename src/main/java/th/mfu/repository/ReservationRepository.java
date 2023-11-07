@@ -6,4 +6,6 @@ import th.mfu.domain.Reservation;
 
 public interface ReservationRepository extends CrudRepository<Reservation, Integer> {
 
+    void deleteByReservationId(Integer id);
+
 }

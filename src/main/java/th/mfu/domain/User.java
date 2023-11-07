@@ -57,4 +57,7 @@ public class User {
         return false;
     }
 
+    public void setBooked(boolean b) {
+    }
+
 }
