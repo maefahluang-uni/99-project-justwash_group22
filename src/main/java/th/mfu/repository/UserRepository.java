@@ -1,25 +1,21 @@
 package th.mfu.repository;
 
-import java.util.Collection;
 import java.util.List;
 
+import org.apache.tomcat.jni.User;
 import org.springframework.data.repository.CrudRepository;
 
-import th.mfu.domain.User;
+public interface UserRepository extends CrudRepository<User, Integer> {
+    public List<User> findByReservationId(Integer reservationId);
 
-public interface UserRepository extends CrudRepository<User,Integer>{
+    public List<User> deleteByReservationId(Integer id);
 
-    void put(String username, User user);
+    public List<User> findByBookedFalseAndReservationId(Integer reservationId);
 
-    Collection<User> values();
+    public List<User> findByBookedTrueAndReservationId(Integer reservationId);
 
-    User get(String username);
+    public List<User> findByBookedTrue();
 
-    boolean containsKey(String username);
+    public void save(th.mfu.domain.User user);
 
-    void remove(String username);
-
-    Object findByReservationId(Integer id);
-
-    List<org.apache.tomcat.jni.User> findByBookedFalseAndReservationId(Integer reservationId);
 }

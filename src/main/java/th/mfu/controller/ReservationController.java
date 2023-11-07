@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import th.mfu.domain.WashingMachine;
-import th.mfu.domain.Reservation; 
-import th.mfu.domain.User; 
+import th.mfu.domain.Reservation;
+import th.mfu.domain.User;
 import th.mfu.repository.ReservationRepository;
 import th.mfu.repository.UserRepository;
 import th.mfu.repository.WashingMachineRepository;
@@ -58,7 +58,7 @@ public class ReservationController {
     @PostMapping("/book/reservations/{reservationId}")
     public String reserveUser(@ModelAttribute WashingMachine washingMachine, @PathVariable Integer reservationId,
             Model model) {
-        User user = userRepo.findById(washingMachine.getReservation().getId()).get();
+        org.apache.tomcat.jni.User user = userRepo.findById(washingMachine.getReservation().getId()).get();
         user.setBooked(true);
         userRepo.save(user);
         washingmachineRepo.save(washingMachine);
