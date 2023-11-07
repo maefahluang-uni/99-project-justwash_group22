@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import th.mfu.domain.WashingMachine; //reservation
 import th.mfu.domain.Reservation; //concert
-import th.mfu.domain.User; //seat
+import th.mfu.domain.User; //seats
 import th.mfu.repository.ReservationRepository;
 import th.mfu.repository.UserRepository;
 import th.mfu.repository.WashingMachineRepository;
