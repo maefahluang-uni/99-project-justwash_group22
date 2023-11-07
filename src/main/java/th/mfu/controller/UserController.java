@@ -2,7 +2,6 @@ package th.mfu.controller;
 
 /*import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -34,13 +33,6 @@ import th.mfu.domain.User;
 public class UserController {
     @Autowired
     UserRepository userRepo;
-   
-    /* Add InitBinder for date conversion
-    @InitBinder
-    public void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", locale);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-    } */
 
     @PostMapping("/users/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
