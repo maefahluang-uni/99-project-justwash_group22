@@ -1,5 +1,12 @@
 package th.mfu.repository;
 
+import org.springframework.data.repository.CrudRepository;
+ 
+import th.mfu.domain.User;
+
+public interface UserRepository extends CrudRepository<User, Integer> {
+}
+
 // ทิ้งไว้ก่อนเด้อ
 /*
  * package th.mfu;
@@ -7,7 +14,7 @@ package th.mfu.repository;
  * import java.util.List;
  * 
  * import org.apache.tomcat.jni.User;
- * import org.springframework.data.repository.CrudRepository;
+ *import org.springframework.data.repository.CrudRepository;
  * 
  * import th.mfu.domain.User;
  * 
@@ -20,3 +27,4 @@ package th.mfu.repository;
  * 
  * }
  */
+
