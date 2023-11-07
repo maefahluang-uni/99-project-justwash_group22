@@ -1,7 +1,9 @@
 package th.mfu.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -58,7 +60,7 @@ public class ReservationController {
     @PostMapping("/book/reservations/{reservationId}")
     public String reserveUser(@ModelAttribute WashingMachine washingMachine, @PathVariable Integer reservationId,
             Model model) {
-        org.apache.tomcat.jni.User user = userRepo.findById(washingMachine.getReservation().getId()).get();
+        User user = userRepo.findById(washingMachine.getReservation().getId()).get();
         user.setBooked(true);
         userRepo.save(user);
         washingmachineRepo.save(washingMachine);
