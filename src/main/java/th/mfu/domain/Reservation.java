@@ -75,5 +75,5 @@ public class Reservation {
     public void setAdmin(Admin admin) {
         this.admin = admin;
     }
-    
+
 }

@@ -53,10 +53,15 @@ public class WashingMachine {
     public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
+
     public Reservation getReservation() {
         return reservation;
     }
+
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
+    }
+
+    public void setBooked(boolean b) {
     }
 }

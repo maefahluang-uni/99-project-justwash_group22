@@ -21,6 +21,8 @@ public class User {
     @JoinColumn(name = "reservation_num")
     private Reservation reservation;
 
+    private WashingMachine washingMachine;
+
     public int getId() {
         return id;
     }
@@ -53,11 +55,12 @@ public class User {
         this.reservation = reservation;
     }
 
-    public static boolean containsKey(String username2) {
-        return false;
+    public WashingMachine getWashingMachine() {
+        return washingMachine;
     }
 
-    public void setBooked(boolean b) {
+    public void setWashingMachine(WashingMachine washingMachine) {
+        this.washingMachine = washingMachine;
     }
 
 }
