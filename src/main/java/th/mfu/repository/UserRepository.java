@@ -16,7 +16,7 @@ public interface UserRepository extends CrudRepository<User,Integer>{
 
     boolean containsKey(String username);
 
-    void remove(String username);
+    void remove(String username); 
 }
 
 /*public class UserRepository {
