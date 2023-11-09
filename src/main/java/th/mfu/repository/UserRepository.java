@@ -8,7 +8,7 @@ import th.mfu.domain.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-    /* void put(String username, User user);
+     void put(String username, User user);
 
     Collection<org.apache.tomcat.jni.User> values();
 
@@ -16,6 +16,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     boolean containsKey(String username);
 
-    void remove(String username); */
+    void remove(String username); 
 
 }

@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public Collection<User> list() {
+    public Collection<org.apache.tomcat.jni.User> list() {
         return userRepo.values();
     }
 
