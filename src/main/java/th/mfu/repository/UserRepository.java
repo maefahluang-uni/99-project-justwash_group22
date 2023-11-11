@@ -1,13 +1,18 @@
 package th.mfu.repository;
 
 import java.util.Collection;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> refs/remotes/origin/main
 
-import org.apache.tomcat.jni.User;
 import org.springframework.data.repository.CrudRepository;
+
+import th.mfu.domain.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
+<<<<<<< HEAD
     th.mfu.domain.User get(String username);
 
     void remove(String username);
@@ -19,5 +24,16 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     Collection<th.mfu.domain.User> values();
 
     void save(Iterable<S> user);
+=======
+     void put(String username, User user);
+
+    Collection<org.apache.tomcat.jni.User> values();
+
+    User get(String username);
+
+    boolean containsKey(String username);
+
+    void remove(String username); 
+>>>>>>> refs/remotes/origin/main
 
 }
