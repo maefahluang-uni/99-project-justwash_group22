@@ -1,39 +1,16 @@
 package th.mfu.repository;
 
-import java.util.Collection;
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> refs/remotes/origin/main
 
 import org.springframework.data.repository.CrudRepository;
 
 import th.mfu.domain.User;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
-<<<<<<< HEAD
-    th.mfu.domain.User get(String username);
-
-    void remove(String username);
-
-    boolean containsKey(String username);
-
-    void put(String username, th.mfu.domain.User user);
-
-    Collection<th.mfu.domain.User> values();
-
-    void save(Iterable<S> user);
-=======
-     void put(String username, User user);
-
-    Collection<org.apache.tomcat.jni.User> values();
-
-    User get(String username);
-
-    boolean containsKey(String username);
-
-    void remove(String username); 
->>>>>>> refs/remotes/origin/main
-
+    // public List<User> findBywashId(Long washId);
+    // public List<User> deleteBywashId(long id);
+    // public List<User> findByBookedFalseAndwashId(Long washId);
+    // public List<User> findByBookedTrueAndwashId(Long washId);
+    // public List<User> findByBookedTrue();
 }

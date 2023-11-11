@@ -9,71 +9,79 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Reservation {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private Date rejected_time;
-    private Date start_time;
-    private Date end_time;
+    private Long id;
+    private Date date;
+    private String Reserve_username;
+    private String Reserve_password;
+    private String Reserve_email;
+    @OneToOne(cascade = CascadeType.MERGE)
+    private User user;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "seat_id")
-    private Notifications Notifications;
+    public Reservation(Long id, Date date, String reserve_username, String reserve_password, String reserve_email,
+            User user) {
+        this.id = id;
+        this.date = date;
+        Reserve_username = reserve_username;
+        Reserve_password = reserve_password;
+        Reserve_email = reserve_email;
+        this.user = user;
+    }
+    public Reservation (){
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
+    }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getRejected_time() {
-        return rejected_time;
+    public Date getDate() {
+        return date;
     }
 
-    public void setRejected_time(Date rejected_time) {
-        this.rejected_time = rejected_time;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Date getStart_time() {
-        return start_time;
+    public String getReserve_username() {
+        return Reserve_username;
     }
 
-    public void setStart_time(Date start_time) {
-        this.start_time = start_time;
+    public void setReserve_username(String reserve_username) {
+        Reserve_username = reserve_username;
     }
 
-    public Date getEnd_time() {
-        return end_time;
+    public String getReserve_password() {
+        return Reserve_password;
     }
 
-    public void setEnd_time(Date end_time) {
-        this.end_time = end_time;
+    public void setReserve_password(String reserve_password) {
+        Reserve_password = reserve_password;
     }
 
-    public Notifications getNotifications() {
-        return Notifications;
+    public String getReserve_email() {
+        return Reserve_email;
     }
 
-    public void setNotifications(Notifications notifications) {
-        Notifications = notifications;
+    public void setReserve_email(String reserve_email) {
+        Reserve_email = reserve_email;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public User getUser() {
+        return user;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

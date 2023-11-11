@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +15,13 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import th.mfu.domain.WashingMachine;
+import th.mfu.repository.WashingMachineRepository;
 
 @Controller
 public class WashingMachineController {
-    private HashMap<Integer, WashingMachine> washingMachines = new HashMap<Integer, WashingMachine>();
-    private int nextId = 1;
-
-    private int date;
+    @Autowired
+    WashingMachineRepository washRepo ;
 
     @InitBinder
     public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
@@ -32,7 +31,7 @@ public class WashingMachineController {
 
     @GetMapping("/WashingMachines")
     public String listWashingMatchine(Model model) {
-        model.addAttribute("washingMachines", washingMachines.values());
+        model.addAttribute("washingMachines", washRepo.findAll());
         return "list-WashingMachine";
     }
 
@@ -42,24 +41,21 @@ public class WashingMachineController {
         return "add-WashingMachine-form";
     }
 
-    @PostMapping("/WashingMachines")
-    public String saveWashingMacine(@ModelAttribute WashingMachine washingMachine) {
-        washingMachine.setId(nextId);
-        washingMachines.put(nextId, washingMachine);
-        nextId++;
+    @PostMapping("/WashingMachines_save")
+    public String saveWashingMacine(@ModelAttribute WashingMachine newwashingMachine) {
+        washRepo.save(newwashingMachine);
         return "redirect:/WashingMachines";
     }
 
     @GetMapping("/delete-WashingMachine/{id}")
-    public String deleteWashingMachine(@PathVariable int id) {
-        washingMachines.remove(id);
+    public String deleteWashingMachine(@PathVariable Long id) {
+        washRepo.deleteById(id);;
         return "redirect:/WashingMachines";
     }
 
     @GetMapping("/delete-WashingMachine")
     public String removeAllWashingMachines(Model model) {
-        washingMachines.clear();
-        nextId = 1;
+       washRepo.deleteAll();
         return "redirect:/WashingMachines";
     }
 }

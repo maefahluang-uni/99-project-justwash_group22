@@ -1,33 +1,47 @@
 package th.mfu.domain;
 
+import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class User {
 
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String username;
-    private String passsword;
-
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "reservation_num")
-    private Reservation reservation;
-
+    private String password;
+    private String email;
+    private boolean booked;
+     @ManyToOne(cascade = CascadeType.MERGE)
     private WashingMachine washingMachine;
 
-    public int getId() {
+ 
+
+    public User(Long id, String username, String password, String email, boolean booked,
+            WashingMachine washingMachine) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.booked = booked;
+        this.washingMachine = washingMachine;
+    }
+
+    public User() {
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,20 +53,28 @@ public class User {
         this.username = username;
     }
 
-    public String getPasssword() {
-        return passsword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasssword(String passsword) {
-        this.passsword = passsword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Reservation getReservation() {
-        return reservation;
+    public String getEmail() {
+        return email;
     }
 
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isBooked() {
+        return booked;
+    }
+
+    public void setBooked(boolean booked) {
+        this.booked = booked;
     }
 
     public WashingMachine getWashingMachine() {
@@ -63,8 +85,5 @@ public class User {
         this.washingMachine = washingMachine;
     }
 
-    public static boolean containsKey(String username2) {
-        return false;
-    }
 
 }

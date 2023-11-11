@@ -10,23 +10,29 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class WashingMachine {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reservation_num")
-    private Reservation reservation;
-
-    private int id;
+    private Long id;
     private String code;
     private String status;
     private String capacity;
 
-    public int getId() {
+    public WashingMachine(Long id, String code, String status, String capacity) {
+        this.id = id;
+        this.code = code;
+        this.status = status;
+        this.capacity = capacity;
+    }
+
+    public WashingMachine() {
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,14 +60,4 @@ public class WashingMachine {
         this.capacity = capacity;
     }
 
-    public Reservation getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }
-
-    public void setBooked(boolean b) {
-    }
 }

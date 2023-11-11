@@ -1,0 +1,10 @@
+INSERT INTO WashingMachine (ID,CODE,CAPACITY) VALUES (1, 'ddsdsadasdasd',  'READY');
+INSERT INTO WashingMachine (ID,CODE,CAPACITY) VALUES (2, 'dsadsadasd2', 'READY');
+INSERT INTO WashingMachine (ID,CODE,CAPACITY) VALUES (3, 'Adsadsadas3','READY');
+INSERT INTO WashingMachine (ID,CODE,CAPACITY) VALUES (4, 'B1dsadsa', 'Middle');
+INSERT INTO WashingMachine (ID,CODE,CAPACITY) VALUES (5, 'Bdsadsa', 'Middle');
+INSERT INTO WashingMachine (ID,CODE,CAPACITY) VALUES (6, 'B3dsad', 'Middle');
+INSERT INTO WashingMachine (ID,CODE,CAPACITY) VALUES (7, 'Cdsad1', 'Rear');
+INSERT INTO WashingMachine (ID,CODE,CAPACITY) VALUES (8, 'Cdsa2', 'Rear');
+INSERT INTO WashingMachine (ID,CODE,CAPACITY) VALUES (9, 'C3dsad', 'Rear');
+INSERT INTO WashingMachine (ID,CODE,CAPACITY) VALUES (10, 'D1dsa', 'Rear');
