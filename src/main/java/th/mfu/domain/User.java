@@ -63,4 +63,8 @@ public class User {
         this.washingMachine = washingMachine;
     }
 
+    public static boolean containsKey(String username2) {
+        return false;
+    }
+
 }
