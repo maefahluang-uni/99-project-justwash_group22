@@ -26,7 +26,7 @@ import th.mfu.repository.UserRepository;
 import th.mfu.repository.WashingMachineRepository;
 
 @Controller
-public class ReservationController {
+public class ReservationController<S> {
     @Autowired
     ReservationRepository reservationRepo;
 
@@ -54,13 +54,21 @@ public class ReservationController {
         return "reserve-washingMachine";
     }
 
+    /**
+     * @param user
+     * @param reservationId
+     * @param model
+     * @param userRepository TODO
+                        
+     * @return
+     */
     @Transactional
     @PostMapping("/book/reservations/{reservationId}")
-    public String reserveWashingMachine(@ModelAttribute User user, @PathVariable Integer reservationId, Model model) {
+    public String reserveWashingMachine(@ModelAttribute User user, @PathVariable Integer reservationId, Model model, UserRepository userRepository, UserRepository userRepository2, UserRepository userRepository3, UserRepository userRepository4) {
         WashingMachine washingMachine = washingMachineRepo.findById(user.getWashingMachine().getId()).get();
         washingMachine.setBooked(true);
         washingMachineRepo.save(washingMachine);
-        userRepo.save(user);
+        userRepository.save((Iterable<S>) user);
         return "redirect:/book";
     }
 
