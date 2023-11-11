@@ -1,9 +1,7 @@
 package th.mfu.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -20,63 +18,59 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import th.mfu.domain.WashingMachine; //reservation
+import th.mfu.domain.User; //reservation
 import th.mfu.domain.Reservation; //concert
-import th.mfu.domain.User; //seat
+import th.mfu.domain.WashingMachine; //seat
 import th.mfu.repository.ReservationRepository;
+import th.mfu.repository.UserRepository;
+import th.mfu.repository.WashingMachineRepository;
 
 @Controller
-public class ReservationController {
+public class ReservationController<S> {
     @Autowired
     ReservationRepository reservationRepo;
 
     @Autowired
-    UserRepository userRepo;
+    WashingMachineRepository washingMachineRepo;
 
     @Autowired
-    WashingMachineRepository washingmachineRepo;
+    UserRepository userRepo;
 
-    // TODO: add proper annotation for GET method
     @GetMapping("/book")
     public String book(Model model) {
-        // TODO: list all concerts
-        model.addAttribute("concerts", concertRepo.findAll());
-        // TODO: return a template to list concerts
+        // TODO: list all reservations
+        model.addAttribute("reservations", reservationRepo.findAll());
+        // TODO: return a template to list reservations
         return "book";
     }
 
-    // TODO: add proper annotation for GET method
-    @GetMapping("/book/concerts/{concertId}")
-    public String reserveSeatForm(@PathVariable Long concertId, Model model) {
-        // TODO: add concert to model
-        model.addAttribute("concert", concertRepo.findById(concertId).get());
-        // TODO: add empty reservation to model
-        Reservation reservation = new Reservation();
-        model.addAttribute("reservation", reservation);
-        // TODO: find available seats (booked=false) by given concert's id to the model
-        List<Seat> seats = seatRepo.findByBookedFalseAndConcertId(concertId);
-        model.addAttribute("seats", seats);
-        return "reserve-seat";
+    @GetMapping("/book/reservations/{reservationId}")
+    public String reserveWashingMachineForm(@PathVariable Integer reservationId, Model model) {
+        model.addAttribute("reservation", reservationRepo.findById(reservationId).get());
+        User user = new User();
+        model.addAttribute("user", user);
+        List<WashingMachine> washingMachines = washingMachineRepo.findByBookedFalseAndReservationId(reservationId);
+        model.addAttribute("washingMachines", washingMachines);
+        return "reserve-washingMachine";
     }
 
+    /**
+     * @param user
+     * @param reservationId
+     * @param model
+     * @param userRepository TODO
+                        
+     * @return
+     */
     @Transactional
-    // TODO: add proper annotation for POST method
-    @PostMapping("/book/concerts/{concertId}")
-    public String reserveSeat(@ModelAttribute Reservation reservation, @PathVariable Long concertId, Model model) {
-        // TODO: find selectd seat by id
-        Seat seat = seatRepo.findById(reservation.getSeat().getId()).get();
-        // TODO: set booked to true
-        seat.setBooked(true);
-        // TODO: save seat
-        seatRepo.save(seat);
-        // TODO: save reservation using reservationRepo
-        reservationRepo.save(reservation);
+    @PostMapping("/book/reservations/{reservationId}")
+    public String reserveWashingMachine(@ModelAttribute User user, @PathVariable Integer reservationId, Model model, UserRepository userRepository, UserRepository userRepository2, UserRepository userRepository3, UserRepository userRepository4) {
+        WashingMachine washingMachine = washingMachineRepo.findById(user.getWashingMachine().getId()).get();
+        washingMachine.setBooked(true);
+        washingMachineRepo.save(washingMachine);
+        userRepository.save((Iterable<S>) user);
         return "redirect:/book";
     }
-
-    /*************************************/
-    /* No Modification beyond this line */
-    /*************************************/
 
     @InitBinder
     public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
@@ -84,49 +78,49 @@ public class ReservationController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-    @GetMapping("/concerts")
-    public String listConcerts(Model model) {
-        model.addAttribute("concerts", concertRepo.findAll());
-        return "list-concert";
+    @GetMapping("/reservations")
+    public String listReservations(Model model) {
+        model.addAttribute("reservations", reservationRepo.findAll());
+        return "list-reservation";
     }
 
-    @GetMapping("/add-concert")
-    public String addAConcertForm(Model model) {
-        model.addAttribute("concert", new Concert());
-        return "add-concert-form";
+    @GetMapping("/add-reservation")
+    public String addAReservationForm(Model model) {
+        model.addAttribute("reservation", new Reservation());
+        return "add-reservation-form";
     }
 
-    @PostMapping("/concerts")
-    public String saveConcert(@ModelAttribute Concert concert) {
-        concertRepo.save(concert);
-        return "redirect:/concerts";
+    @PostMapping("/reservations")
+    public String saveReservation(@ModelAttribute Reservation reservation) {
+        reservationRepo.save(reservation);
+        return "redirect:/reservations";
     }
 
     @Transactional
-    @GetMapping("/delete-concert/{id}")
-    public String deleteConcert(@PathVariable long id) {
-        seatRepo.deleteByConcertId(id);
-        concertRepo.deleteById(id);
-        return "redirect:/concerts";
+    @GetMapping("/delete-reservation/{id}")
+    public String deleteReservation(@PathVariable Integer id) {
+        washingMachineRepo.deleteByReservationId(id);
+        reservationRepo.deleteById(id);
+        return "redirect:/reservations";
     }
 
-    @GetMapping("/concerts/{id}/seats")
-    public String showAddSeatForm(Model model, @PathVariable Long id) {
-        model.addAttribute("seats", seatRepo.findByConcertId(id));
+    @GetMapping("/reservations/{id}/washingMachines")
+    public String showAddWashingMachineForm(Model model, @PathVariable Integer id) {
+        model.addAttribute("washingMachines", washingMachineRepo.findByReservationId(id));
 
-        Concert concert = concertRepo.findById(id).get();
-        Seat seat = new Seat();
-        seat.setConcert(concert);
-        model.addAttribute("newseat", seat);
-        return "seat-mgmt";
+        Reservation reservation = reservationRepo.findById(id).get();
+        WashingMachine washingMachine = new WashingMachine();
+        washingMachine.setReservation(reservation);
+        model.addAttribute("newwashingMachine", washingMachine);
+        return "washingMachine-mgmt";
     }
 
-    @PostMapping("/concerts/{id}/seats")
-    public String saveSeat(@ModelAttribute Seat newseat, @PathVariable Long id) {
-        Concert concert = concertRepo.findById(id).get();
-        newseat.setConcert(concert);
-        seatRepo.save(newseat);
-        return "redirect:/concerts/" + id + "/seats";
+    @PostMapping("/reservations/{id}/washingMachines")
+    public String saveWashingMachine(@ModelAttribute WashingMachine newwashingMachine, @PathVariable Integer id) {
+        Reservation reservation = reservationRepo.findById(id).get();
+        newwashingMachine.setReservation(reservation);
+        washingMachineRepo.save(newwashingMachine);
+        return "redirect:/reservations/" + id + "/washingMachines";
     }
 
 }
