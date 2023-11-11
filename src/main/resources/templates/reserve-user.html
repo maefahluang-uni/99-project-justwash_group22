@@ -3,61 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Make a Reservation</title>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Include Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Custom CSS for dark theme -->
-    <style>
-        body {
-            background-color: #333;
-            color: #fff;
-        }
-
-        .container {
-            background-color: #444;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .form-control {
-            background-color: #555;
-            color: #fff;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-            color: #fff;
-        }
-    </style>
+    <title>Reserve Washing Machine</title>
 </head>
 <body>
-    <div class="container mt-5">
-        <form th:action="@{/book/justwash/{washingMachineId}}" th:object="${reservation}" method="post">
-            <div class="form-group">
-                <label for="reservation_username"><i class="fas fa-user"></i>Name:</label>
-                <input type="text" class="form-control" id="reservation_username" th:field="*{reservation_username}" required>
-                <label for="reservation_password"><i class="fas fa-user"></i> Password:</label>
-                <input type="text" class="form-control" id="reservation_password" th:field="*{reservation_password}" required>
-                <label for="email"><i class="fas fa-envelope"></i> Email:</label>
-                <input type="reservation_email" class="form-control" id="reservation_email" th:field="*{reservation_email}" required>
-                <label for="user"><i class="fas fa-chair"></i> Select a user:</label>
-                <select id="user" name="user" class="form-control" th:field="*{user.id}" required>
-                    <option th:each="se : ${users}" th:value="${se.id}" th:text="${se.zone + ' - ' + se.number}"></option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Reserve</button>
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='/book'"><i class="fas fa-times"></i> Cancel</button>
-        </form>
-    </div>
 
-    <!-- Include Font Awesome JS for icons -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <h2>Reserve Washing Machine</h2>
+
+    <form th:action="/book/justwash/{washingMachineId}" th:object="${reservation}" method="post">
+        <div class="form-group">
+            <label for="Reserve_username">Username:</label>
+            <input type="text" class="form-control" id="Reserve_username" th:field="*{Reserve_username}" required>
+            
+            <label for="Reserve_password">Password:</label>
+            <input type="text" class="form-control" id="Reserve_password" th:field="*{Reserve_password}" required>
+            
+            <label for="Reserve_email">Email:</label>
+            <input type="email" class="form-control" id="Reserve_email" th:field="*{Reserve_email}" required>
+            
+            
+        </div>
+        <button type="submit" class="btn btn-reserve">Reserve</button>
+    </form>
+
+    <a href="/book">Back to Reservations</a>
+
 </body>
 </html>

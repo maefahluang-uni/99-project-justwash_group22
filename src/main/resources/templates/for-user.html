@@ -14,25 +14,36 @@
     <div class="container mt-5">
         <h1 class="mb-4">Washing Machine List</h1>
         <ul class="list-group">
-            <li th:each="WashingMachine : ${washingMachines}" class="list-group-item">
+            <li th:each="washingMachine : ${washingMachines}" class="list-group-item">
                 <div class="d-flex justify-content-between">
                     <div>
                         <table>
-                            <tr>
-                                <th>ID</th>
-                                <th>CODE</th>
-                                <th>CAPACITY</th>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>CODE</th>
+                                    <th>CAPACITY</th>
+                                    <th>STATUS</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td th:text="${washingMachine.id}" class="me-2"></td>
+                                    <td th:text="${washingMachine.code}" class="me-2"></td>
+                                    <td th:text="${washingMachine.capacity}" class="me-2"></td>
+                                    <td th:text="${washingMachine.status}" class="me-2"></td>
 
-                            <tr>
-                                <td><span th:text="${WashingMachine.id}" class="me-2"></span></td>
-                                <td> <span th:text="${WashingMachine.code}" class="me-2"></span></td>
-                                <td><span th:text="${WashingMachine.capacity}" class="me-2"></span></td>
-                                <td> <span th:text="${WashingMachine.status}" class="me-2"></span></td>
-                            </tr>
+                                    <td>
+                                        <a class="btn btn-primary"
+                                           th:href="@{/book/justwash/{washingMachineId}(washingMachineId=${washingMachine.id})}">
+                                            Reserve
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
-
                 </div>
             </li>
         </ul>

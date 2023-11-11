@@ -43,60 +43,96 @@ import th.mfu.repository.WashingMachineRepository;
 
 @Controller
 public class UserController{
-     @Autowired
+
+    @Autowired
     UserRepository userRepo;
+
     @Autowired
-    WashingMachineRepository washRepo;
+    WashingMachineRepository washingMachinesRepo;
+
     @Autowired
-    ReservationRepository reservRepo;
-@InitBinder
+    ReservationRepository reserveRepo;
+
+    @GetMapping("/WashingMachines")
+    public String listWashingMatchine(Model model) {
+        model.addAttribute("washingMachines", washingMachinesRepo.findAll());
+        return "list-WashingMachine";
+    }
+
+    @GetMapping("/add-WashingMachine")
+    public String addWashingMachineForm(Model model) {
+        model.addAttribute("washingMachine", new WashingMachine());
+        return "add-WashingMachine-form";
+    }
+
+    @PostMapping("/WashingMachines")
+    public String saveWashingMacine(@ModelAttribute WashingMachine washingMachine) {
+        washingMachinesRepo.save(washingMachine);
+        return "redirect:/WashingMachines";
+    }
+
+    @Transactional
+    @GetMapping("/delete-WashingMachine/{id}")
+    public String deleteWashingMachine(@PathVariable Long id) {
+        washingMachinesRepo.deleteById(id);;
+        return "redirect:/WashingMachines";
+    }
+
+    @GetMapping("/delete-WashingMachine")
+    public String removeAllWashingMachines(Model model) {
+       washingMachinesRepo.deleteAll();
+        return "redirect:/WashingMachines";
+    }
+
+    @InitBinder
     public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", locale);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
+ ///////////////
     @GetMapping("/user_book")
     public String ShowUserBook(Model model) {
-        model.addAttribute("washingMachines", washRepo.findAll());
+        model.addAttribute("washingMachines", washingMachinesRepo.findAll());
         return "for-user";
     }
 
-    // @GetMapping("/book")
-    // public String book(Model model) {
-    //     // TODO: list all reservations
-    //     model.addAttribute("reservation", reservRepo.findAll());
-    //     // TODO: return a template to list reservations
-    //     return "book";
-    // }
+    @GetMapping("/book")
+    public String book(Model model) {
+        // TODO: list all reservations
+        model.addAttribute("reservation", reserveRepo.findAll());
+        // TODO: return a template to list reservations
+        return "book";
+    }
 
-    // // TODO: add proper annotation for GET method
-    // @GetMapping("/book/justwash/{washingMachineId}")
-    // public String reserveWashForm(@PathVariable Long washId, Model model) {
-    //     // TODO: add concert to model
-    //     model.addAttribute("washingMachines", washRepo.findById(washId).get());
-    //     // TODO: add empty reservation to model
-    //     Reservation reservation = new Reservation();
-    //     model.addAttribute("reservation", reservation);
-    //     // TODO: find available seats (booked=false) by given concert's id to the model
-    //     List<User> users = userRepo.findByBookedFalseAndwashId(washId);
-    //     model.addAttribute("users", users);
-    //     return "reserve-user";
-    // }
+    // TODO: add proper annotation for GET method
+    @GetMapping("/book/justwash/{washingMachineId}")
+    public String reserveWashForm(@PathVariable Long washingMachineId, Model model) {
+        // TODO: add concert to model
+        model.addAttribute("washingMachines", washingMachinesRepo.findById(washingMachineId).get());
+        // TODO: add empty reservation to model
+        Reservation reservation = new Reservation();
+        model.addAttribute("reservation", reservation);
+        // TODO: find available seats (booked=false) by given concert's id to the model
+        List<WashingMachine> machines = washingMachinesRepo.findByBookedFalseAndId(washingMachineId);
+        model.addAttribute("washingMachines", machines);
+        return "reserve-machine";
+    }
 
-    // @Transactional
-    // // TODO: add proper annotation for POST method
-    // @PostMapping("/book/justwash/{washingMachineId}")
-    // public String reserveSeat(@ModelAttribute Reservation reservation, @PathVariable Long washId, Model model) {
-    //     // TODO: find selectd seat by id
-    //     User user = userRepo.findById(reservation.getUser().getId()).get();
-    //     // TODO: set booked to true
-    //     user.setBooked(true);
-    //     // TODO: save seat
-    //     userRepo.save(user);
-    //     // TODO: save reservation using reservationRepo
-    //     reservRepo.save(reservation);
-    //     return "redirect:/book";
-    // }
+    @Transactional
+    // TODO: add proper annotation for POST method
+    @PostMapping("/book/justwash/{washingMachineId}")
+    public String reserveWash(@ModelAttribute Reservation reservation, @PathVariable Long washId, Model model) {
+        // TODO: find selectd seat by id
+        WashingMachine washingMachine = washingMachinesRepo.findById(reservation.getUser().getId()).get();
+        // TODO: set booked to true
+        washingMachine.setBooked(true);
+        // TODO: save seat
+        washingMachinesRepo.save(washingMachine);
+        // TODO: save reservation using reservationRepo
+        reserveRepo.save(reservation);
+        return "redirect:/book";
+    }
     
 }
 

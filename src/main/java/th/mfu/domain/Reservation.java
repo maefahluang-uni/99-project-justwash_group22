@@ -23,8 +23,7 @@ public class Reservation {
     @OneToOne(cascade = CascadeType.MERGE)
     private User user;
 
-    public Reservation(Long id, Date date, String reserve_username, String reserve_password, String reserve_email,
-            User user) {
+    public Reservation(Long id, Date date, String reserve_username, String reserve_password, String reserve_email,User user) {
         this.id = id;
         this.date = date;
         Reserve_username = reserve_username;

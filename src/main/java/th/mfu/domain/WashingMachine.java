@@ -13,9 +13,11 @@ public class WashingMachine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String code;
     private String status;
     private String capacity;
+    private boolean booked;
 
     public WashingMachine(Long id, String code, String status, String capacity) {
         this.id = id;
@@ -59,5 +61,15 @@ public class WashingMachine {
     public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
+
+    public boolean isBooked() {
+        return booked;
+    }
+
+    public void setBooked(boolean booked) {
+        this.booked = booked;
+    }
+
+    
 
 }

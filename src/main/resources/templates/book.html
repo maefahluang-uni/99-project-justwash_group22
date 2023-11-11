@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concert Booking</title>
+    <title>Booking</title>
     <!-- Include Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Include Font Awesome for icons -->
@@ -34,29 +34,32 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1><i class="fas fa-music"></i> Choose Concert to Book</h1>
-        <table class="table table-striped mt-3">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Performer</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="WashingMachine : ${washingMachines}">
-                    <td th:text="${WashingMachine.id}"></td>
-                    <td th:text="${WashingMachine.code}"></td>
-                    <td th:text="${WashingMachine.status}"></td>
-                    <td th:text="${WashingMachine.capacity}"></td>
-                    <td>
-                        <a class="btn btn-primary" th:href="@{/book/washingMachinesid/{washingMachineId}}"><i class="fas fa-ticket-alt"></i> Book</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <a class="btn btn-secondary mb-3" th:href="@{/concerts/}">Back to Machine List</a>
+        <h1>Machine Management</h1>
+        <ul class="list-group">
+            <!--TODO: add <li> for listing all seats -->
+            <li th:each="washingMachine : ${washingMachines}" class="list-group-item">
+                <span th:text="${washingMachine.code}"></span> 
+                <span class="ml-3" th:text="${washingMachine.capacity}"></span>
+                <span class="ml-3" th:text="${washingMachine.status"></span>
+            </li>
+        </ul>
+        <!--TODO: create form for adding a new seat -->
+        <form th:action="/book/justwash/{washingMachineId}" th:object="${washingMachine}" method="post">
+            <div class="form-group">
+                <label for="code">Machine No.:</label>
+                <input type="text" class="form-control" id="code" th:field="*{code}" required>
+
+                <label for="capacity">Capacity:</label>
+                <select class="form-control" id="capacity" th:field="*{capacity}" required>
+
+                <label for="status">Status:</label>
+                <input type="text" class="form-control" id="status" th:field="*{status}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
     </div>
+</body>
 
     <!-- Include Font Awesome JS for icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seat Management</title>
+    <title>Reservation Management</title>
     <!-- Include Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Include Font Awesome for icons -->
@@ -45,8 +45,8 @@
 </head>
 <body>
     <div class="container mt-5">
-        <a class="btn btn-secondary mb-3" th:href="@{/washingMachines/}"><i class="fas fa-arrow-left"></i> Back to Concert List</a>
-        <h1><i class="fas fa-chair"></i> Seat Management</h1>
+        <a class="btn btn-secondary mb-3" th:href="@{/washingMachines/}"><i class="fas fa-arrow-left"></i> Back to Machine List</a>
+        <h1><i class="fas fa-chair"></i> Reservation Management</h1>
         <ul class="list-group">
             <!-- TODO: add <li> for listing all seats -->
             <li th:each="seat : ${users}" class="list-group-item">

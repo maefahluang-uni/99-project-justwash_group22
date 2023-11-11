@@ -18,13 +18,12 @@ public class User {
     private String password;
     private String email;
     private boolean booked;
-     @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private WashingMachine washingMachine;
 
  
 
-    public User(Long id, String username, String password, String email, boolean booked,
-            WashingMachine washingMachine) {
+    public User(Long id, String username, String password, String email, boolean booked,WashingMachine washingMachine) {
         this.id = id;
         this.username = username;
         this.password = password;
