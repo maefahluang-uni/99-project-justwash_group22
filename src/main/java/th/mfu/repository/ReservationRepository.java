@@ -6,3 +6,4 @@ import th.mfu.domain.Reservation;
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
 
 }
+//555
