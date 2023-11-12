@@ -17,70 +17,58 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date date;
-    private String Reserve_username;
-    private String Reserve_password;
-    private String Reserve_email;
+    private String username;
+    private String password;
+    private String email;
+
+    // public Reservation(Long id, Date date, String reserve_username, String reserve_password, String reserve_email,User user) {
+    //     this.id = id;
+    //     this.date = date;
+    //     username = reserve_username;
+    //     password = reserve_password;
+    //     email = reserve_email;
+    //     this.user = user;
+    // }
+
     @OneToOne(cascade = CascadeType.MERGE)
-    private User user;
-
-    public Reservation(Long id, Date date, String reserve_username, String reserve_password, String reserve_email,User user) {
-        this.id = id;
-        this.date = date;
-        Reserve_username = reserve_username;
-        Reserve_password = reserve_password;
-        Reserve_email = reserve_email;
-        this.user = user;
-    }
-    public Reservation (){
-
-    }
-
+    private Queue queue;
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public Date getDate() {
         return date;
     }
-
     public void setDate(Date date) {
         this.date = date;
     }
-
-    public String getReserve_username() {
-        return Reserve_username;
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public Queue getQueue() {
+        return queue;
+    }
+    public void setQueue(Queue queue) {
+        this.queue = queue;
     }
 
-    public void setReserve_username(String reserve_username) {
-        Reserve_username = reserve_username;
-    }
-
-    public String getReserve_password() {
-        return Reserve_password;
-    }
-
-    public void setReserve_password(String reserve_password) {
-        Reserve_password = reserve_password;
-    }
-
-    public String getReserve_email() {
-        return Reserve_email;
-    }
-
-    public void setReserve_email(String reserve_email) {
-        Reserve_email = reserve_email;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
+    
+    
 }

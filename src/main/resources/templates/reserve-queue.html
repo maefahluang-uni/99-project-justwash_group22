@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Reservation</title>
+</head>
+<body>
+
+    <h2>Make a Reservation</h2>
+
+    <form th:action="/book/washingMachines/{washingMachineId}" th:object="${reservation}" method="post">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" th:field="*{username}" required>
+            
+            <label for="password">Password:</label>
+            <input type="text" class="form-control" id="password" th:field="*{password}" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" th:field="*{email}" required>
+            
+            
+        </div>
+        <button type="submit" class="btn btn-reserve">Reserve</button>
+    </form>
+
+    <a href="/book">Back to Reservations</a>
+
+</body>
+</html>

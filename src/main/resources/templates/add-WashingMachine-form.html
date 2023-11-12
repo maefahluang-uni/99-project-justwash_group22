@@ -13,7 +13,7 @@
 <body class="bg-light">
     <div class="container mt-5">
         <h1>Add WashingMachine</h1>
-        <form th:action="@{/WashingMachines_save}" th:object="${washingMachine}" method="post">
+        <form th:action="@{/washingMachines}" th:object="${washingMachine}" method="post">
             <div class="mb-3">
                 <label for="code" class="form-label">Code:</label>
                 <input type="text" id="code" class="form-control" th:field="*{code}" required>

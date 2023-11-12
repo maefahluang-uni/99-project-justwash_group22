@@ -1,12 +1,14 @@
 package th.mfu.domain;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class WashingMachine {
@@ -17,14 +19,18 @@ public class WashingMachine {
     private String code;
     private String status;
     private String capacity;
+    @Column(nullable = false)
     private boolean booked;
 
-    public WashingMachine(Long id, String code, String status, String capacity) {
-        this.id = id;
-        this.code = code;
-        this.status = status;
-        this.capacity = capacity;
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    private Queue queue;
+
+    // public WashingMachine(Long id, String code, String status, String capacity) {
+    //     this.id = id;
+    //     this.code = code;
+    //     this.status = status;
+    //     this.capacity = capacity;
+    // }
 
     public WashingMachine() {
 
@@ -70,6 +76,12 @@ public class WashingMachine {
         this.booked = booked;
     }
 
-    
+    public Queue getQueue() {
+        return queue;
+    }
+
+    public void setQueue(Queue queue) {
+        this.queue = queue;
+    }
 
 }
