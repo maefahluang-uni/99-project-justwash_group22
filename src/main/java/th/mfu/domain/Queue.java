@@ -1,25 +1,34 @@
 package th.mfu.domain;
 
+import java.util.Date;
+
+import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.GeneratorType;
 
+//TODO: add proper annotation
 @Entity
 public class Queue {
 
+    //TODO: add proper annotation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String number;
+    private String username;
     private boolean booked;
+    private Date date;
 
+    //TODO: add proper annotation for relationship to concert
     @ManyToOne(cascade = CascadeType.MERGE)
-    private WashingMachine washingMachine;
+    private Machine machine;
 
     public Long getId() {
         return id;
@@ -29,12 +38,12 @@ public class Queue {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public boolean isBooked() {
@@ -45,16 +54,25 @@ public class Queue {
         this.booked = booked;
     }
 
-    public WashingMachine getWashingMachine() {
-        return washingMachine;
+    public Date getDate() {
+        return date;
     }
 
-    public void setWashingMachine(WashingMachine washingMachine) {
-        this.washingMachine = washingMachine;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Machine getMachine() {
+        return machine;
+    }
+
+    public void setMachine(Machine machine) {
+        this.machine = machine;
     }
 
     
+
     
-    
-    
+
+
 }

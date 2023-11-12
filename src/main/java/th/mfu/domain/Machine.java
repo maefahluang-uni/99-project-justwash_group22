@@ -11,43 +11,54 @@ import javax.persistence.OneToOne;
 
 //TODO: add proper annotation
 @Entity
-public class Reservation {
-    
-    //TODO: add proper annotation
+public class Machine {
+
+    //TODO: add proper annotation 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+    private String name;
+    private String capacity;
     private Date date;
-    //TODO: add proper annotation for relationship to seat
-    @OneToOne(cascade = CascadeType.MERGE)
-    private Queue queue;
+
+    //TODO: add proper annotation
+    // @OneToOne(cascade = CascadeType.ALL)
+    // private Performer performer;
+    
+
+    public Machine() {
+    }
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
-    public String getUsername() {
-        return username;
+
+    public String getName() {
+        return name;
     }
-    public void setUsername(String username) {
-        this.username = username;
+
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
+    }
+
     public Date getDate() {
         return date;
     }
+
     public void setDate(Date date) {
         this.date = date;
     }
-    public Queue getQueue() {
-        return queue;
-    }
-    public void setQueue(Queue queue) {
-        this.queue = queue;
-    }
-
-    
-
     
 }

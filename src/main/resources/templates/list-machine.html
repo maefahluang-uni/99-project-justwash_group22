@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Machine List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Machine List</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Machine ID</th>
+                    <th>Machine Name</th>
+                    <!-- Add more table headers as needed -->
+                    <th>Action</th> <!-- Add a new column for action buttons -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Use Thymeleaf to iterate over the machines and display them -->
+                <tr th:each="machine : ${machines}">
+                    <td th:text="${machine.id}">Machine ID</td>
+                    <td th:text="${machine.name}">Machine Name</td>
+                    <!-- Add more table cells to display other machine properties -->
+                    <td>
+                        <a class="btn btn-danger" th:href="@{/delete-machine/{id}(id=${machine.id})}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary" th:href="@{/add-machines}">Add Machine</a> <!-- Adjust the URL as needed -->
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
