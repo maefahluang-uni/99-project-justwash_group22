@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-//TODO: add proper annotation
+//TODO: add proper annotation ka
 @Entity
 public class Machine {
 
