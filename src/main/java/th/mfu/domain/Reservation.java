@@ -22,6 +22,16 @@ public class Reservation {
     //TODO: add proper annotation for relationship to seat
     @OneToOne(cascade = CascadeType.MERGE)
     private Queue queue;
+    
+    public Reservation(Long id, String username, Date date, Queue queue) {
+        this.id = id;
+        this.username = username;
+        this.date = date;
+        this.queue = queue;
+    }
+    public Reservation(){
+        
+    }
     public Long getId() {
         return id;
     }

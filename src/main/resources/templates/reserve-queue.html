@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,16 +40,20 @@
 <body background="https://images.unsplash.com/photo-1567942712661-82b9b407abbf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNvbmNlcnR8ZW58MHx8MHx8fDA%3D&w=1000&q=80">
     <div class="container mt-5 container-form">
         <h1>Make a Reservation</h1>
-        <form th:action="@{/book/machines/{id}(id=${machine.id})}" th:object="${reservation}" method="post">
+        <form th:action="@{/book/machines/{machineId}(machineId=${machine.id})}" th:object="${reservation}" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" class="form-control" id="username" th:field="*{username}" required>
-                
                 <label for="date">Time:</label>
                 <input type="date" class="form-control" id="date" th:field="*{date}" required>
-                
             </div>
-            <button type="submit" class="btn btn-reserve">Reserve</button>
+            <div class="form-group">
+                <label for="queues">Select a Queue:</label>
+                <select id="queue" class="form-control" name="queue.id" th:field="*{queue.id}" required>
+                    <option th:each="q : ${queues}" th:value="${q.id}" th:text="${q.date + ' - ' + q.username}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 </body>

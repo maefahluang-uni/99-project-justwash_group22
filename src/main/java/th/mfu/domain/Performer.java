@@ -1,6 +1,5 @@
 package th.mfu.domain;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +14,17 @@ public class Performer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    
 
+
+    public Performer(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Performer(){
+        
+    }
 
     public Long getId() {
         return id;

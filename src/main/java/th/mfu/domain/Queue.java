@@ -2,16 +2,12 @@ package th.mfu.domain;
 
 import java.util.Date;
 
-import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 
 //TODO: add proper annotation
@@ -29,6 +25,23 @@ public class Queue {
     //TODO: add proper annotation for relationship to concert
     @ManyToOne(cascade = CascadeType.MERGE)
     private Machine machine;
+
+
+
+
+    
+
+    public Queue(Long id, String username, boolean booked, Date date, Machine machine) {
+        this.id = id;
+        this.username = username;
+        this.booked = booked;
+        this.date = date;
+        this.machine = machine;
+    }
+
+    public Queue (){
+        
+    }
 
     public Long getId() {
         return id;

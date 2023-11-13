@@ -10,29 +10,23 @@
 <body>
     <div class="container mt-5">
         <a class="btn btn-secondary mb-3" th:href="@{/machines/}">Back to Machine List</a>
-        <h1>Queue Management</h1>
+        <h1>Add Queue Management</h1>
         <ul class="list-group">
-            <!--TODO: add <li> for listing all seats -->
+            <!-- List existing queues -->
             <li th:each="queue : ${queues}" class="list-group-item">
                 <span class="ml-3" th:text="${queue.username}"></span>
                 <span class="ml-3" th:text="${queue.date}"></span>
             </li>
         </ul>
-        <!--TODO: create form for adding a new seat -->
+        <!-- Form for adding a new queue -->
         <form th:action="@{/machines/{id}/queues(id=${newqueue.machine.id})}" th:object="${newqueue}" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" class="form-control" id="username" th:field="*{username}" required>
                 <label for="date">Time:</label>
                 <input type="date" class="form-control" id="date" th:field="*{date}" required>
-                <!-- <label for="zone">Zone:</label>
-                <select class="form-control" id="zone" th:field="*{zone}" required>
-                    <option value="Front">Front</option>
-                    <option value="Middle">Middle</option>
-                    <option value="Rear">Rear</option>
-                </select> -->
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary">Confirm add queue</button>
         </form>
     </div>
 </body>

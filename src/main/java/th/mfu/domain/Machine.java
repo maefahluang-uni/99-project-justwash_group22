@@ -2,12 +2,10 @@ package th.mfu.domain;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 //TODO: add proper annotation ka
 @Entity
@@ -25,8 +23,16 @@ public class Machine {
     // @OneToOne(cascade = CascadeType.ALL)
     // private Performer performer;
     
+    
 
     public Machine() {
+    }
+
+    public Machine(Long id, String name, String capacity, Date date) {
+        this.id = id;
+        this.name = name;
+        this.capacity = capacity;
+        this.date = date;
     }
 
     public Long getId() {
