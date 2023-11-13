@@ -82,8 +82,8 @@ public class MachineController {
     }
 
     @PostMapping("/machines")
-    public String saveMachine(@ModelAttribute Machine newmachine) {
-        machineRepo.save(newmachine);
+    public String saveMachine(@ModelAttribute Machine machine) {
+        machineRepo.save(machine);
         return "redirect:/machines";
     }
 
@@ -111,10 +111,5 @@ public class MachineController {
         newqueue.setMachine(machine);
         queueRepo.save(newqueue);
         return "redirect:/machines/" + id + "/queues";
-    }
-    @GetMapping("/delete-machines")
-    public String removeAllMachine() {
-        machineRepo.deleteAll();
-        return "redirect:/machines";
     }
 }
