@@ -14,8 +14,9 @@
                 <tr>
                     <th>Machine ID</th>
                     <th>Machine Name</th>
-                    <!-- Add more table headers as needed -->
-                    <th>Action</th> <!-- Add a new column for action buttons -->
+                    <th>Capacity</th>
+                    <th>Price</th>
+                    <th> </th>
                 </tr>
             </thead>
             <tbody>
@@ -24,12 +25,10 @@
                     <td th:text="${machine.id}">Machine ID</td>
                     <td th:text="${machine.name}">Machine Name</td>
                     <td th:text="${machine.capacity}">Machine Capacity</td>
-                    <!-- Add more table cells to display other machine properties -->
+                    <td th:text="${machine.price}"> </td>
                     <td>
+                        <a class="btn btn-primary" th:href="@{/machines/{id}/queues(id=${machine.id})}">Add Queue</a>
                         <a class="btn btn-danger" th:href="@{/delete-machine/{id}(id=${machine.id})}">Delete</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-success" th:href="@{/machines/{id}/queues(id=${machine.id})}">Add Queue</a>
                     </td>
                 </tr>
             </tbody>

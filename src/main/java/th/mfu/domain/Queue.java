@@ -26,11 +26,6 @@ public class Queue {
     @ManyToOne(cascade = CascadeType.MERGE)
     private Machine machine;
 
-
-
-
-    
-
     public Queue(Long id, String username, boolean booked, Date date, Machine machine) {
         this.id = id;
         this.username = username;
@@ -82,10 +77,4 @@ public class Queue {
     public void setMachine(Machine machine) {
         this.machine = machine;
     }
-
-    
-
-    
-
-
 }
