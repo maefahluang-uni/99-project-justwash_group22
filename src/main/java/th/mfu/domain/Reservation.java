@@ -27,7 +27,7 @@ public class Reservation {
         this.id = id;
         this.username = username;
         this.date = date;
-        this.queue = queue;
+        this.queue = queue != null ? queue : new Queue();
     }
     public Reservation(){
         
@@ -56,8 +56,5 @@ public class Reservation {
     public void setQueue(Queue queue) {
         this.queue = queue;
     }
-
-    
-
     
 }

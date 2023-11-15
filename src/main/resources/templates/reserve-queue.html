@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>>Make a Reservation</title>
+  <title>Make a Reservation</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
@@ -11,7 +11,7 @@
 
 <div class="container mt-5">
   <h2>Make a Reservation</h2>
-  <form th:action="@{/machines/{id}/queues(id=${newqueue.machine.id})}" th:object="${newqueue}" method="post">
+  <form th:action="@{/book/machines/{id}(id=${machine.id})}" th:object="${reservation}" method="post">
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text" class="form-control" id="username" th:field="*{username}" required>

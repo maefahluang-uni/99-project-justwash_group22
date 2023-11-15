@@ -16,6 +16,7 @@
                     <th>Capacity</th>
                     <th>Washing Time</th>
                     <th>Price</th>
+                    <th>Machine Status</th>
                     <th> </th>
                 </tr>
             </thead>
@@ -26,6 +27,7 @@
                     <td th:text="${machine.capacity}">Machine Capacity</td>
                     <td th:text="${machine.w_time}">Washing Time</td>
                     <td th:text="${machine.price}">Price</td>
+                    <td th:text="${machine.m_status}">Machine Status</td>
                     <td>
                         <a class="btn btn-primary" th:href="@{/machines/{id}/queues(id=${machine.id})}">View Queue</a>
                         <a class="btn btn-danger" th:href="@{/delete-machine/{id}(id=${machine.id})}">Delete</a>

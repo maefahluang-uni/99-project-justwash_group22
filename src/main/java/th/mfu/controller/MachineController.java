@@ -2,6 +2,7 @@ package th.mfu.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.transaction.Transactional;
@@ -41,6 +42,7 @@ public class MachineController {
         return "book";
     }
 
+    //book
     @GetMapping("/book/machines/{machineId}")
     public String reserveQueueForm(@PathVariable Long machineId, Model model) {
         model.addAttribute("machine", machineRepo.findById(machineId).get());
@@ -49,15 +51,42 @@ public class MachineController {
         return "reserve-queue";
     }
 
+    // @Transactional
+    // @PostMapping("/book/machines/{machineId}")
+    // public String reserveQueue(@ModelAttribute Reservation reservation, @PathVariable Long machineId, Model model) {
+    // Queue queue = reservation.getQueue();
+    // System.out.println(queue);
+    // if (queue == null) {
+    //     // Handle the case where the Queue is null, you might want to add some error handling. For now, let's redirect to the book page
+    //     return "redirect:/book";
+    // }
+    // queue.setBooked(true);
+    // queue.setUsername(reservation.getUsername());
+    // queue.setDate(reservation.getDate());
+    // queueRepo.save(queue);
+    // reservationRepo.save(reservation);
+    // return "redirect:/book";
+    // }
     @Transactional
     @PostMapping("/book/machines/{machineId}")
     public String reserveQueue(@ModelAttribute Reservation reservation, @PathVariable Long machineId, Model model) {
-        Queue queue = reservation.getQueue();
-        queue.setBooked(true);
-        queueRepo.save(queue);
-        reservationRepo.save(reservation);
-        return "redirect:/book";
+    // Initialize a new Queue object if not provided in the form
+    if (reservation.getQueue() == null) {
+        reservation.setQueue(new Queue());
     }
+
+    Queue queue = reservation.getQueue();
+    Machine machine = machineRepo.findById(machineId).get();
+    queue.setMachine(machine);
+    queue.setBooked(true);
+    queue.setUsername(reservation.getUsername());
+    queue.setDate(reservation.getDate());
+    queue.setW_status("in progress");
+    queueRepo.save(queue);
+    reservationRepo.save(reservation);
+    return "redirect:/book";
+}
+
 
     /*************************************/
 
@@ -93,21 +122,40 @@ public class MachineController {
         return "redirect:/machines";
     }
 
+    // @GetMapping("/machines/{id}/queues")
+    // public String showAddQueueForm(Model model, @PathVariable Long id) {
+    //     model.addAttribute("queues", queueRepo.findByMachineId(id));
+    //     Machine machine = machineRepo.findById(id).get();
+    //     Queue queue = new Queue();
+    //     queue.setMachine(machine);
+    //     model.addAttribute("newqueue", queue);
+    //     return "list-queue";
+    // }
+
     @GetMapping("/machines/{id}/queues")
     public String showAddQueueForm(Model model, @PathVariable Long id) {
-        model.addAttribute("queues", queueRepo.findByMachineId(id));
-        Machine machine = machineRepo.findById(id).get();
-        Queue queue = new Queue();
-        queue.setMachine(machine);
-        model.addAttribute("newqueue", queue);
-        return "list-queue";
-    }
+    List<Queue> queues = queueRepo.findByMachineId(id);
+    Machine machine = machineRepo.findById(id).get();
+    Queue queue = new Queue();
+    queue.setMachine(machine);
+    model.addAttribute("queues", queues);
+    return "list-queue";
+}
+
 
     @PostMapping("/machines/{id}/queues")
-    public String saveQueue(@ModelAttribute Queue newqueue, @PathVariable Long id) {
+    public String saveQueue(@ModelAttribute Queue queue, @PathVariable Long id) {
         Machine machine = machineRepo.findById(id).get();
-        newqueue.setMachine(machine);
-        queueRepo.save(newqueue);
+        queue.setMachine(machine);
+        queueRepo.save(queue);
         return "redirect:/list-queue";
+    }
+
+    @Transactional
+    @GetMapping("/delete-queue/{id}")
+    public String deleteQueue(@PathVariable Long id) {
+        //queueRepo.deleteByMachineId(id);
+        queueRepo.deleteById(id);
+        return "redirect:/machines";
     }
 }
