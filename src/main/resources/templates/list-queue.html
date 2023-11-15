@@ -2,16 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Machine List</title>
+    <title>Queue List</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-4">
-        <h1 class="text-center">Machine List</h1>
+        <h1 class="text-center">Queue List</h1>
 
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Queue ID</th>
                     <th>Machine ID</th>
                     <th>Capacity</th>
                     <th>Washing Time</th>
@@ -21,20 +22,18 @@
             </thead>
             <tbody>
                 <!-- Use Thymeleaf to iterate over the machines and display them -->
-                <tr th:each="machine : ${machines}">
+                <tr th:each="queue : ${queues}">
+                    <td th:text="${queue.id}">Queue ID</td>
                     <td th:text="${machine.id}">Machine ID</td>
-                    <td th:text="${machine.capacity}">Machine Capacity</td>
+                    <td th:text="${machine.capacity}">Capacity</td>
                     <td th:text="${machine.w_time}">Washing Time</td>
                     <td th:text="${machine.price}">Price</td>
                     <td>
-                        <a class="btn btn-primary" th:href="@{/machines/{id}/queues(id=${machine.id})}">View Queue</a>
-                        <a class="btn btn-danger" th:href="@{/delete-machine/{id}(id=${machine.id})}">Delete</a>
+                        <a class="btn btn-danger" th:href="@{/delete-queue/{id}(id=${queue.id})}">Cancle</a>
                     </td>
                 </tr>
             </tbody>
         </table>
-
-        <a class="btn btn-primary" th:href="@{/add-machines}">Add Machine</a>
     </div>
 
     <!-- Include Bootstrap JS and jQuery scripts -->

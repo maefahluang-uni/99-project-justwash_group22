@@ -21,21 +21,22 @@ public class Queue {
     private String username;
     private boolean booked;
     private Date date;
+    private String w_status;
 
     //TODO: add proper annotation for relationship to concert
     @ManyToOne(cascade = CascadeType.MERGE)
     private Machine machine;
 
-    public Queue(Long id, String username, boolean booked, Date date, Machine machine) {
+    public Queue (){
+    }
+
+    public Queue(Long id, String username, boolean booked, Date date, String w_status, Machine machine) {
         this.id = id;
         this.username = username;
         this.booked = booked;
         this.date = date;
+        this.w_status = w_status;
         this.machine = machine;
-    }
-
-    public Queue (){
-        
     }
 
     public Long getId() {
@@ -70,6 +71,14 @@ public class Queue {
         this.date = date;
     }
 
+    public String getW_status() {
+        return w_status;
+    }
+
+    public void setW_status(String w_status) {
+        this.w_status = w_status;
+    }
+
     public Machine getMachine() {
         return machine;
     }
@@ -77,4 +86,6 @@ public class Queue {
     public void setMachine(Machine machine) {
         this.machine = machine;
     }
+
+    
 }

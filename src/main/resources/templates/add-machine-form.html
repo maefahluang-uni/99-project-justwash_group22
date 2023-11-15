@@ -12,10 +12,10 @@
         <h1>Add Machine</h1>
         <form th:action="@{/machines}" th:object="${machine}" method="post">
             <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" th:field="*{name}" required>
                 <label for="capacity">Capacity:</label>
                 <input type="text" class="form-control" id="capacity" th:field="*{capacity}" required>
+                <label for="w_time">Washing Time:</label>
+                <input type="text" class="form-control" id="w_time" th:field="*{w_time}" required>
                 <label for="price">Price:</label>
                 <input type="text" class="form-control" id="price" th:field="*{price}" required>
             </div>

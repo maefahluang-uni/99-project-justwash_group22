@@ -60,8 +60,6 @@ public class MachineController {
     }
 
     /*************************************/
-    /* No Modification beyond this line */
-    /*************************************/
 
     @InitBinder
     public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
@@ -102,7 +100,7 @@ public class MachineController {
         Queue queue = new Queue();
         queue.setMachine(machine);
         model.addAttribute("newqueue", queue);
-        return "queue-mgmt";
+        return "list-queue";
     }
 
     @PostMapping("/machines/{id}/queues")
@@ -110,6 +108,6 @@ public class MachineController {
         Machine machine = machineRepo.findById(id).get();
         newqueue.setMachine(machine);
         queueRepo.save(newqueue);
-        return "redirect:/machines/" + id + "/queues";
+        return "redirect:/list-queue";
     }
 }

@@ -15,10 +15,10 @@ public class Machine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
     private String capacity;
+    private  String price;
+    private String w_time;
     private Date date;
-    private  int price;
 
     //TODO: add proper annotation
     // @OneToOne(cascade = CascadeType.ALL)
@@ -29,82 +29,54 @@ public class Machine {
     public Machine() {
     }
 
-    
-
-    public Machine(Long id, String name, String capacity, Date date, int price) {
+    public Machine(Long id, String capacity, String price, String w_time, Date date) {
         this.id = id;
-        this.name = name;
         this.capacity = capacity;
-        this.date = date;
         this.price = price;
+        this.w_time = w_time;
+        this.date = date;
     }
-
-
 
     public Long getId() {
         return id;
     }
 
-
-
     public void setId(Long id) {
         this.id = id;
     }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
 
     public String getCapacity() {
         return capacity;
     }
 
-
-
     public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
 
+    public String getPrice() {
+        return price;
+    }
 
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getW_time() {
+        return w_time;
+    }
+
+    public void setW_time(String w_time) {
+        this.w_time = w_time;
+    }
 
     public Date getDate() {
         return date;
     }
 
-
-
     public void setDate(Date date) {
         this.date = date;
     }
 
-
-
-    public int getPrice() {
-        return price;
-    }
-
-
-
-    public void setPrice(int price) {
-        if (capacity == "15") {
-            price = 30;
-        } else if (capacity == "20") {
-            price = 45;
-        }
-        this.price = price;
-    }
-
-
-
     
+
 }
