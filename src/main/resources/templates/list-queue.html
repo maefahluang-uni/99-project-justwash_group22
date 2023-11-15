@@ -12,7 +12,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Queue ID</th>
                     <th>Username</th>
                     <th>Machine ID</th>
                     <th>Capacity</th>
@@ -25,7 +24,6 @@
             <tbody>
                 <!-- Use Thymeleaf to iterate over the queues and display them -->
                 <tr th:each="queue : ${queues}">
-                    <td th:text="${queue.id}">Queue ID</td>
                     <td th:text="${queue.username}">Username</td>
                     <td th:text="${queue.machine.id}">Machine ID</td>
                     <td th:text="${queue.machine.capacity}">Capacity</td>

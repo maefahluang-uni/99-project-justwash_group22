@@ -81,7 +81,7 @@ public class MachineController {
     queue.setBooked(true);
     queue.setUsername(reservation.getUsername());
     queue.setDate(reservation.getDate());
-    queue.setW_status("in progress");
+    queue.setW_status("not started yet");
     queueRepo.save(queue);
     reservationRepo.save(reservation);
     return "redirect:/book";
@@ -110,6 +110,7 @@ public class MachineController {
 
     @PostMapping("/machines")
     public String saveMachine(@ModelAttribute Machine machine) {
+        machine.setM_status("available");
         machineRepo.save(machine);
         return "redirect:/machines";
     }
@@ -147,6 +148,7 @@ public class MachineController {
     public String saveQueue(@ModelAttribute Queue queue, @PathVariable Long id) {
         Machine machine = machineRepo.findById(id).get();
         queue.setMachine(machine);
+        machine.setM_status("reserved");
         queueRepo.save(queue);
         return "redirect:/list-queue";
     }
