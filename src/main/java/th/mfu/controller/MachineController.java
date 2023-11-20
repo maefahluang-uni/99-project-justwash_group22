@@ -83,7 +83,7 @@ public class MachineController {
     queue.setDate(reservation.getDate());
     queue.setW_status("not started yet");
     queueRepo.save(queue);
-    reservationRepo.save(reservation);
+    //reservationRepo.save(reservation);
     return "redirect:/book";
 }
 
@@ -154,10 +154,10 @@ public class MachineController {
     }
 
     @Transactional
-    @GetMapping("/delete-queue/{id}")
-    public String deleteQueue(@PathVariable Long id) {
+    @GetMapping("/delete-queue/{id}/{machineId}")
+    public String deleteQueue(@PathVariable Long id, @PathVariable Long machineId) {
         //queueRepo.deleteByMachineId(id);
         queueRepo.deleteById(id);
-        return "redirect:/machines";
+        return "redirect:/machines/{machineId}/queues";
     }
 }

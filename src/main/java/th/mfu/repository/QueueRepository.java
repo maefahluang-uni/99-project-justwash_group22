@@ -8,7 +8,7 @@ import th.mfu.domain.Queue;
 
 public interface QueueRepository extends CrudRepository<Queue, Long>{
     public List<Queue> findByMachineId(Long machineId);
-    public List<Queue> deleteByMachineId(long id);
+    public List<Queue> deleteByMachineId(Long id);
     public List<Queue> findByBookedFalseAndMachineId(Long machineId);
     public List<Queue> findByBookedTrueAndMachineId(Long machineId);
     public List<Queue> findByBookedTrue();

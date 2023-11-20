@@ -87,5 +87,11 @@ public class Queue {
         this.machine = machine;
     }
 
-    
+    public Queue getQueue() {
+        return null;
+    }
+
+    public void setQueue(Queue queue) {
+    }
+
 }
