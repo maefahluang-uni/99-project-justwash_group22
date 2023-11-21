@@ -1,6 +1,7 @@
 package th.mfu.controller;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import javax.servlet.http.HttpServletRequest;
+
 
 import th.mfu.domain.Machine;
 import th.mfu.domain.Queue;
@@ -68,24 +71,43 @@ public class MachineController {
     // return "redirect:/book";
     // }
     @Transactional
-    @PostMapping("/book/machines/{machineId}")
-    public String reserveQueue(@ModelAttribute Reservation reservation, @PathVariable Long machineId, Model model) {
+@PostMapping("/book/machines/{machineId}")
+public String reserveQueue(@ModelAttribute Reservation reservation, @PathVariable Long machineId, HttpServletRequest request) {
     // Initialize a new Queue object if not provided in the form
     if (reservation.getQueue() == null) {
         reservation.setQueue(new Queue());
     }
 
     Queue queue = reservation.getQueue();
-    Machine machine = machineRepo.findById(machineId).get();
+    Machine machine = machineRepo.findById(machineId).orElse(null);
+
+    if (machine == null) {
+        // Handle the case where the machine is not found
+        return "redirect:/book";
+    }
+
     queue.setMachine(machine);
     queue.setBooked(true);
     queue.setUsername(reservation.getUsername());
-    queue.setDate(reservation.getDate());
+    queue.setDate(reservation.getDate());reservation.setTime(LocalTime.parse(request.getParameter("timepicker")));
     queue.setW_status("not started yet");
     queueRepo.save(queue);
-    //reservationRepo.save(reservation);
-    return "redirect:/book";
+
+    // Save the reservation to get its ID
+    reservation.setQueue(queue);
+    reservationRepo.save(reservation);
+
+    // Redirect to the booking details page with the reservation ID
+    return "redirect:/booking-detail/" + reservation.getId();
 }
+
+
+    @GetMapping("/booking-detail/{reservationId}")
+    public String showBookingDetail(@PathVariable Long reservationId, Model model) {
+        Reservation reservation = reservationRepo.findById(reservationId).orElse(null);
+        model.addAttribute("reservation", reservation);
+        return "booking-detail";
+    }
 
 
     /*************************************/

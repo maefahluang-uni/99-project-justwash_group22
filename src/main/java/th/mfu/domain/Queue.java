@@ -1,13 +1,18 @@
 package th.mfu.domain;
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 //TODO: add proper annotation
@@ -21,21 +26,29 @@ public class Queue {
     private String username;
     private boolean booked;
     private Date date;
+    private Time time;
     private String w_status;
 
     //TODO: add proper annotation for relationship to concert
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "queue", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
+
+    @ManyToOne
+    @JoinColumn(name = "machine_id")
     private Machine machine;
 
     public Queue (){
     }
 
-    public Queue(Long id, String username, boolean booked, Date date, String w_status, Machine machine) {
+    public Queue(Long id, String username, boolean booked, Date date, Time time, String w_status,
+            List<Reservation> reservations, Machine machine) {
         this.id = id;
         this.username = username;
         this.booked = booked;
         this.date = date;
+        this.time = time;
         this.w_status = w_status;
+        this.reservations = reservations;
         this.machine = machine;
     }
 
@@ -71,12 +84,28 @@ public class Queue {
         this.date = date;
     }
 
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
     public String getW_status() {
         return w_status;
     }
 
     public void setW_status(String w_status) {
         this.w_status = w_status;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
     public Machine getMachine() {
@@ -87,11 +116,8 @@ public class Queue {
         this.machine = machine;
     }
 
-    public Queue getQueue() {
-        return null;
-    }
+    
 
-    public void setQueue(Queue queue) {
-    }
+    
 
 }
