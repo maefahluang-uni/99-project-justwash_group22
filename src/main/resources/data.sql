@@ -16,18 +16,18 @@ INSERT INTO QUEUE ( USERNAME, BOOKED, DATE, W_STATUS, MACHINE_ID) VALUES ('D2', 
 INSERT INTO QUEUE ( USERNAME, BOOKED, DATE, W_STATUS, MACHINE_ID) VALUES ('E1', false, '2023-07-15 18:00:00', 'not started yet', 5);
 INSERT INTO QUEUE ( USERNAME, BOOKED, DATE, W_STATUS, MACHINE_ID) VALUES ('E2', false, '2023-07-15 18:00:00', 'not started yet', 5);
 
--- Create the queue_status table
-CREATE TABLE queue_status (
-    ID BIGINT PRIMARY KEY,
-    queue_id BIGINT,
-    queue_status VARCHAR(255), -- Adjust the length according to your needs
-    FOREIGN KEY (queue_id) REFERENCES queue (ID)
-);
+-- -- Create the queue_status table
+-- CREATE TABLE queue_status (
+--     ID BIGINT PRIMARY KEY,
+--     queue_id BIGINT,
+--     queue_status VARCHAR(255), -- Adjust the length according to your needs
+--     FOREIGN KEY (queue_id) REFERENCES queue (ID)
+-- );
 
--- Insert some sample data into the queue_status table
-INSERT INTO queue_status (ID, queue_id, queue_status) VALUES (1, 1, 'status1');
-INSERT INTO queue_status (ID, queue_id, queue_status) VALUES (2, 2, 'status2');
-INSERT INTO queue_status (ID, queue_id, queue_status) VALUES (3, 3, 'status3');
+-- -- Insert some sample data into the queue_status table
+-- INSERT INTO queue_status (ID, queue_id, queue_status) VALUES (1, 1, 'status1');
+-- INSERT INTO queue_status (ID, queue_id, queue_status) VALUES (2, 2, 'status2');
+-- INSERT INTO queue_status (ID, queue_id, queue_status) VALUES (3, 3, 'status3');
 
 
 
