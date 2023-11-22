@@ -157,4 +157,12 @@ public class MachineController {
         queueRepo.deleteById(id);
         return "redirect:/machines/{machineId}/queues";
     }
+
+    @GetMapping("/book/machines/{machineId}/status")
+    public String viewStatus(@PathVariable Long machineId, Model model) {
+        model.addAttribute("machine", machineRepo.findById(machineId).get());
+        model.addAttribute("reservation", new Reservation());
+        model.addAttribute("queues", queueRepo.findByBookedFalseAndMachineId(machineId));
+        return "queue-status";
+    }
 }
