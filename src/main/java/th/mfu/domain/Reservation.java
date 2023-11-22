@@ -25,7 +25,7 @@ public class Reservation {
     private String username;
     private Date date;
     private LocalTime time;
-    //TODO: add proper annotation for relationship to seat
+    //TODO: add proper annotation for relationship to seat ka
     @ManyToOne
     @JoinColumn(name = "queue_id")
     private Queue queue;
