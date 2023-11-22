@@ -19,8 +19,7 @@
                 <label for="price">Price:</label>
                 <input type="text" class="form-control" id="price" th:field="*{price}" required>
             </div>
-            
-            <button type="submit" class="btn btn-success">Save Machine</button>
+            <button type="submit" class="btn btn-success">Save Machine</button> <a class="btn btn-primary" th:href="@{/machines}">Back to Machine List</a>
         </form>
     </div>
 </body>

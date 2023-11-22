@@ -31,12 +31,13 @@
                     <td th:text="${queue.machine.price}">Price</td>
                     <td th:text="${queue.w_status}">Washing Status</td>
                     <td>
-                        <a class="btn btn-danger" th:href="@{/delete-queue/{id}(id=${queue.id})}">Cancel</a>
+                        <a class="btn btn-danger" th:href="@{'/delete-queue/' + ${queue.id} + '/' + ${queue.machine.id}}">Cancel</a>
                     </td>
                 </tr>
             </tbody>
             
         </table>
+        <a class="btn btn-primary" th:href="@{/machines}">Back to Machine List</a>
     </div>
 
     <!-- Include Bootstrap JS and jQuery scripts -->

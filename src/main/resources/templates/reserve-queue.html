@@ -20,7 +20,10 @@
       <label for="timepicker">Time:</label>
       <input type="time" class="form-control" id="timepicker" name="timepicker">
     </div>
-    <button type="submit" class="btn btn-success">Submit</button>
+    <a class="btn btn-primary" th:href="@{/book}">Back</a> 
+    <form action="/book/machines/{machineId}" method="post" th:object="${reservation}">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </form>
 </div>
 
@@ -31,13 +34,3 @@
 
 </body>
 </html>
-
-<!-- <form th:action="@{/machines/{id}/queues(id=${newqueue.machine.id})}" th:object="${newqueue}" method="post">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" th:field="*{username}" required>
-                <label for="date">Time:</label>
-                <input type="date" class="form-control" id="date" th:field="*{date}" required>
-            </div>
-            <button type="submit" class="btn btn-success">Confirm add queue</button>
-        </form> -->
