@@ -165,14 +165,4 @@ public class MachineController {
         model.addAttribute("queues", queueRepo.findByBookedFalseAndMachineId(machineId));
         return "queue-status";
     }
-
-    // @GetMapping("/refresh-page")
-    // public String refreshPage(Model model) {
-    // // Add logic to retrieve updated data or messages from the server
-    // String updatedMessage = "Your queue was already confirmed by admin";
-    // model.addAttribute("updatedMessage", updatedMessage);
-    // // Return the name of the HTML template to be refreshed
-    // return "queue-status :: content";
-    // }
-
 }
