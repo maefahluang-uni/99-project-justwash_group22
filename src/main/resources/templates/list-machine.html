@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Machine List</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container mt-4">
         <h1 class="text-center">Machine List</h1>
@@ -37,6 +39,11 @@
         </table>
 
         <a class="btn btn-primary" th:href="@{/add-machines}">Add Machine</a>
+        <div class="container mt-5">
+            <form id="logoutForm" action="/logout" method="post" class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
     </div>
 
     <!-- Include Bootstrap JS and jQuery scripts -->
@@ -44,4 +51,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

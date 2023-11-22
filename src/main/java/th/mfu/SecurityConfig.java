@@ -13,7 +13,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/api/public/**").permitAll() // Allow public access
+                .antMatchers("/book").permitAll() // Allow access to /machines without authentication
                 .anyRequest().authenticated() // Require authentication for other requests
                 .and()
                 .logout() // Configure logout
@@ -27,3 +27,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .httpBasic(); // Enable Basic Authentication
     }
 }
+
