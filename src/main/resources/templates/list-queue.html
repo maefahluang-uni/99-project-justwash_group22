@@ -12,6 +12,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Reservation Time</th>
                     <th>Username</th>
                     <th>Machine ID</th>
                     <th>Capacity</th>
@@ -19,11 +20,14 @@
                     <th>Price</th>
                     <th>Washing Status</th>
                     <th> </th>
+                    <th> </th>
+                    
                 </tr>
             </thead>
             <tbody>
                 <!-- Use Thymeleaf to iterate over the queues and display them -->
                 <tr th:each="queue : ${queues}">
+                    <td th:text="${#temporals.format(queue.time, 'HH:mm')}">Reservation Time</td>
                     <td th:text="${queue.username}">Username</td>
                     <td th:text="${queue.machine.id}">Machine ID</td>
                     <td th:text="${queue.machine.capacity}">Capacity</td>
@@ -32,6 +36,9 @@
                     <td th:text="${queue.w_status}">Washing Status</td>
                     <td>
                         <a class="btn btn-danger" th:href="@{'/delete-queue/' + ${queue.id} + '/' + ${queue.machine.id}}">Cancel</a>
+                    </td>
+                    <td>
+                        <!-- <a class="btn btn-success" th:href="@{/confirm-queue/{id}(id=${queue.id})}">Confirm</a> -->
                     </td>
                 </tr>
             </tbody>

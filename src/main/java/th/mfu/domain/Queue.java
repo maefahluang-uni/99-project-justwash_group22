@@ -2,6 +2,7 @@ package th.mfu.domain;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -26,8 +27,13 @@ public class Queue {
     private String username;
     private boolean booked;
     private Date date;
-    private Time time;
+    private LocalTime time;
     private String w_status;
+    public void confirmQueue() {
+        this.w_status = "on working";
+    }
+    
+    
 
     //TODO: add proper annotation for relationship to concert
     @OneToMany(mappedBy = "queue", cascade = CascadeType.ALL)
@@ -40,7 +46,7 @@ public class Queue {
     public Queue (){
     }
 
-    public Queue(Long id, String username, boolean booked, Date date, Time time, String w_status,
+    public Queue(Long id, String username, boolean booked, Date date, LocalTime time, String w_status,
             List<Reservation> reservations, Machine machine) {
         this.id = id;
         this.username = username;
@@ -84,11 +90,11 @@ public class Queue {
         this.date = date;
     }
 
-    public Time getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 
@@ -115,8 +121,6 @@ public class Queue {
     public void setMachine(Machine machine) {
         this.machine = machine;
     }
-
-    
 
     
 
