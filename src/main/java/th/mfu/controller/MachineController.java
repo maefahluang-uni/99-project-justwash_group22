@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import javax.servlet.http.HttpServletRequest;
-
 
 import th.mfu.domain.Machine;
 import th.mfu.domain.Queue;
@@ -45,7 +44,6 @@ public class MachineController {
         return "book";
     }
 
-
     @GetMapping("/book/machines/{machineId}")
     public String reserveQueueForm(@PathVariable Long machineId, Model model) {
         model.addAttribute("machine", machineRepo.findById(machineId).get());
@@ -54,36 +52,35 @@ public class MachineController {
         return "reserve-queue";
     }
 
-
     @Transactional
     @PostMapping("/book/machines/{machineId}")
-    public String reserveQueue(@ModelAttribute Reservation reservation, @PathVariable Long machineId, HttpServletRequest request) {
-    // Initialize a new Queue object if not provided in the form
-    if (reservation.getQueue() == null) {
-        reservation.setQueue(new Queue());
-    }
-    Queue queue = reservation.getQueue();
-    Machine machine = machineRepo.findById(machineId).orElse(null);
+    public String reserveQueue(@ModelAttribute Reservation reservation, @PathVariable Long machineId,
+            HttpServletRequest request) {
+        // Initialize a new Queue object if not provided in the form
+        if (reservation.getQueue() == null) {
+            reservation.setQueue(new Queue());
+        }
+        Queue queue = reservation.getQueue();
+        Machine machine = machineRepo.findById(machineId).orElse(null);
 
-    if (machine == null) {
-        // Handle the case where the machine is not found
-        return "redirect:/book";
+        if (machine == null) {
+            // Handle the case where the machine is not found
+            return "redirect:/book";
+        }
+        queue.setMachine(machine);
+        queue.setBooked(true);
+        queue.setUsername(reservation.getUsername());
+        queue.setDate(reservation.getDate());
+        reservation.setTime(LocalTime.parse(request.getParameter("timepicker")));
+        queue.setTime(LocalTime.parse(request.getParameter("timepicker")));
+        queue.setW_status("not started yet");
+        queueRepo.save(queue);
+        // Save the reservation to get its ID
+        reservation.setQueue(queue);
+        reservationRepo.save(reservation);
+        // Redirect to the booking details page with the reservation ID
+        return "redirect:/booking-detail/" + reservation.getId();
     }
-    queue.setMachine(machine);
-    queue.setBooked(true);
-    queue.setUsername(reservation.getUsername());
-    queue.setDate(reservation.getDate());
-    reservation.setTime(LocalTime.parse(request.getParameter("timepicker")));
-    queue.setTime(LocalTime.parse(request.getParameter("timepicker")));
-    queue.setW_status("not started yet");
-    queueRepo.save(queue);
-    // Save the reservation to get its ID
-    reservation.setQueue(queue);
-    reservationRepo.save(reservation);
-    // Redirect to the booking details page with the reservation ID
-    return "redirect:/booking-detail/" + reservation.getId();
-    }
-
 
     @GetMapping("/booking-detail/{reservationId}")
     public String showBookingDetail(@PathVariable Long reservationId, Model model) {
@@ -100,20 +97,17 @@ public class MachineController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-
     @GetMapping("/machines")
     public String listMachines(Model model) {
         model.addAttribute("machines", machineRepo.findAll());
         return "list-machine";
     }
 
-
     @GetMapping("/add-machines")
     public String addMachineForm(Model model) {
         model.addAttribute("machine", new Machine());
         return "add-machine-form";
     }
-
 
     @PostMapping("/machines")
     public String saveMachine(@ModelAttribute Machine machine) {
@@ -132,14 +126,13 @@ public class MachineController {
 
     @GetMapping("/machines/{id}/queues")
     public String showAddQueueForm(Model model, @PathVariable Long id) {
-    List<Queue> queues = queueRepo.findByMachineId(id);
-    Machine machine = machineRepo.findById(id).get();
-    Queue queue = new Queue();
-    queue.setMachine(machine);
-    model.addAttribute("queues", queues);
-    return "list-queue";
+        List<Queue> queues = queueRepo.findByMachineId(id);
+        Machine machine = machineRepo.findById(id).get();
+        Queue queue = new Queue();
+        queue.setMachine(machine);
+        model.addAttribute("queues", queues);
+        return "list-queue";
     }
-
 
     @PostMapping("/machines/{id}/queues")
     public String saveQueue(@ModelAttribute Queue queue, @PathVariable Long id) {
@@ -153,7 +146,7 @@ public class MachineController {
     @Transactional
     @GetMapping("/delete-queue/{id}/{machineId}")
     public String deleteQueue(@PathVariable Long id, @PathVariable Long machineId) {
-        //queueRepo.deleteByMachineId(id);
+        // queueRepo.deleteByMachineId(id);
         queueRepo.deleteById(id);
         return "redirect:/machines/{machineId}/queues";
     }
@@ -165,4 +158,12 @@ public class MachineController {
         model.addAttribute("queues", queueRepo.findByBookedFalseAndMachineId(machineId));
         return "queue-status";
     }
+
+    // @GetMapping("/book/board/status")
+    // public String viewBoardStatus(@PathVariable Long machineId, Model model) {
+    //     model.addAttribute("machine", machineRepo.findById(machineId).get());
+    //     model.addAttribute("reservation", new Reservation());
+    //     model.addAttribute("queues", queueRepo.findByBookedFalseAndMachineId(machineId));
+    //     return "Board";
+    // }
 }

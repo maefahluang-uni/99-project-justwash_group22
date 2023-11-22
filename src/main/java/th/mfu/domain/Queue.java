@@ -1,7 +1,5 @@
 package th.mfu.domain;
 
-import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
@@ -29,9 +27,6 @@ public class Queue {
     private Date date;
     private LocalTime time;
     private String w_status;
-    public void confirmQueue() {
-        this.w_status = "on working";
-    }
     
     
 
