@@ -2,29 +2,76 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queue Status</title>
+    <!-- Add your existing head content here -->
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- Custom CSS for the countdown timer -->
+    <style>
+        #countdown {
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="container mt-5">
-        <h2>Queue Status</h2>
-        <div class="card">
-            <div class="card-body">
-                <p class="card-text"><strong>Reserved time:</strong> <span th:utext="${reservation.time}"></span></p>
-                <p class="card-text">Please make a payment and confirm queue at the laundry shop in 15 minutes</p>
-            </div>
-        </div>
+        <h2 id="countdown">Please make a payment and confirm queue at the laundry shop in 15 minutes</h2>
     </div>
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript for the countdown timer -->
+    <script>
+        // Set the countdown time in minutes
+        var countdownTime = 15;
+
+        // Function to update the countdown timer
+        function updateCountdown() {
+            var countdownElement = document.getElementById('countdown');
+            countdownElement.innerHTML = 'Your queue was canceled because it was not confirmed within 15 minutes.';
+        }
+
+        // Function to start the countdown
+        function startCountdown() {
+            var countdownElement = document.getElementById('countdown');
+            var currentTime = countdownTime * 60; // Convert minutes to seconds
+
+            function updateTimer() {
+                var minutes = Math.floor(currentTime / 60);
+                var seconds = currentTime % 60;
+
+                countdownElement.innerHTML = 'Please make a payment and confirm queue at the laundry shop in ' +
+                    minutes + ' minutes ' + seconds + ' seconds';
+
+                // Decrement the time
+                currentTime--;
+
+                // Check if the countdown has finished
+                if (currentTime < 0) {
+                    updateCountdown();
+                }
+            }
+
+            // Initial update
+            updateTimer();
+
+            // Update the timer every second
+            var countdownInterval = setInterval(updateTimer, 1000);
+        }
+
+        // Start the countdown when the page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            startCountdown();
+        });
+    </script>
 
 </body>
 
