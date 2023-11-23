@@ -23,7 +23,5 @@ public class QueueService {
         queueRepository.save(queue);
     }
 
-    // Other methods related to QueueService based on your requirements
-
 }
 

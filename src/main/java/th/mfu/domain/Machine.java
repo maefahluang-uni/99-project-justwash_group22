@@ -8,12 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//TODO: add proper annotation ka
+
 @Entity
 @Table(name = "Machine")
 public class Machine {
 
-    //TODO: add proper annotation 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -82,9 +81,5 @@ public class Machine {
     public void setDate(Date date) {
         this.date = date;
     }
-
-    
-
-    
 
 }

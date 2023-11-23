@@ -1,31 +1,26 @@
 package th.mfu.domain;
 
-import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
-//TODO: add proper annotation
+
 @Entity
 public class Reservation {
     
-    //TODO: add proper annotation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private Date date;
     private LocalTime time;
-    //TODO: add proper annotation for relationship to seat ka
+    
     @ManyToOne
     @JoinColumn(name = "queue_id")
     private Queue queue;
@@ -72,6 +67,5 @@ public class Reservation {
     public void setQueue(Queue queue) {
         this.queue = queue;
     }
-    
     
 }

@@ -14,11 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
-//TODO: add proper annotation
 @Entity
 public class Queue {
 
-    //TODO: add proper annotation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,9 +26,6 @@ public class Queue {
     private LocalTime time;
     private String w_status;
     
-    
-
-    //TODO: add proper annotation for relationship to concert
     @OneToMany(mappedBy = "queue", cascade = CascadeType.ALL)
     private List<Reservation> reservations;
 
@@ -116,7 +111,5 @@ public class Queue {
     public void setMachine(Machine machine) {
         this.machine = machine;
     }
-
-    
 
 }

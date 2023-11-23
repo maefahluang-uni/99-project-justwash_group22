@@ -165,5 +165,4 @@ public class MachineController {
         return "queue-status";
     }
     
-
 }
