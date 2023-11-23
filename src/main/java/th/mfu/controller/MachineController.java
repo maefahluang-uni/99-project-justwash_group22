@@ -90,7 +90,6 @@ public class MachineController {
     }
 
     /*************************************/
-
     @InitBinder
     public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", locale);
