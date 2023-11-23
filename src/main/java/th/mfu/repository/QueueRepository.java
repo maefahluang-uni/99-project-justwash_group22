@@ -12,4 +12,6 @@ public interface QueueRepository extends CrudRepository<Queue, Long>{
     public List<Queue> findByBookedFalseAndMachineId(Long machineId);
     public List<Queue> findByBookedTrueAndMachineId(Long machineId);
     public List<Queue> findByBookedTrue();
+    public List<Queue> findByBookedFalse();
+
 }

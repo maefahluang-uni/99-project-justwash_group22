@@ -134,6 +134,13 @@ public class MachineController {
         return "list-queue";
     }
 
+    @GetMapping("/machines/{id}/queues/status")
+    public String showAddQueue(Model model, @PathVariable Long id) {
+        List<Queue> queues = queueRepo.findByMachineId(id);
+        model.addAttribute("queues", queues);
+        return "redirect:/book/machines/status"; // Redirect to the queue status page
+    }
+
     @PostMapping("/machines/{id}/queues")
     public String saveQueue(@ModelAttribute Queue queue, @PathVariable Long id) {
         Machine machine = machineRepo.findById(id).get();
@@ -151,19 +158,12 @@ public class MachineController {
         return "redirect:/machines/{machineId}/queues";
     }
 
-    @GetMapping("/book/machines/{machineId}/status")
-    public String viewStatus(@PathVariable Long machineId, Model model) {
-        model.addAttribute("machine", machineRepo.findById(machineId).get());
-        model.addAttribute("reservation", new Reservation());
-        model.addAttribute("queues", queueRepo.findByBookedFalseAndMachineId(machineId));
+    @GetMapping("/book/machines/status")
+    public String viewStatus(Model model) {
+        List<Queue> queues = queueRepo.findByBookedFalse(); // Retrieve all queues that are not booked
+        model.addAttribute("queues", queues);
         return "queue-status";
     }
+    
 
-    // @GetMapping("/book/board/status")
-    // public String viewBoardStatus(@PathVariable Long machineId, Model model) {
-    //     model.addAttribute("machine", machineRepo.findById(machineId).get());
-    //     model.addAttribute("reservation", new Reservation());
-    //     model.addAttribute("queues", queueRepo.findByBookedFalseAndMachineId(machineId));
-    //     return "Board";
-    // }
 }

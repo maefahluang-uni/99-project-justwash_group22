@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 //TODO: add proper annotation ka
 @Entity
+@Table(name = "Machine")
 public class Machine {
 
     //TODO: add proper annotation 
@@ -20,13 +22,7 @@ public class Machine {
     private String w_time;
     private String m_status;
     private Date date;
-
-    //TODO: add proper annotation
-    // @OneToOne(cascade = CascadeType.ALL)
-    // private Performer performer;
     
-    
-
     public Machine() {
     }
 

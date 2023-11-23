@@ -77,8 +77,8 @@
 
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>Reservation Time</th>
+                <tr><th>Reservation Time</th>
+                    <th>Reservation</th>
                     <th>Username</th>
                     <th>Machine ID</th>
                     <th>Capacity</th>
@@ -91,13 +91,15 @@
             <tbody>
                 <!-- Use Thymeleaf to iterate over the queues and display them -->
                 <tr th:each="queue : ${queues}">
-                    <td th:text="${#temporals.format(queue.time, 'HH:mm')}">Reservation Time</td>
-                    <td th:text="${queue.username}">Username</td>
-                    <td th:text="${queue.machine.id}">Machine ID</td>
-                    <td th:text="${queue.machine.capacity}">Capacity</td>
-                    <td th:text="${queue.machine.w_time}">Washing Time</td>
-                    <td th:text="${queue.machine.price}">Price</td>
-                    <td th:text="${queue.w_status}">Washing Status</td> <!-- Add this line -->
+                    <td th:text="${#temporals.format(queue.time, 'HH:mm')}"></td>
+                    <td th:text="${queue.machine.id}"></td>
+                    <td th:text="${queue.username}"></td>
+                    <td th:text="${queue.machine.id}"></td>
+                    <td th:text="${queue.machine.capacity}"></td>
+                    <td th:text="${queue.machine.w_time}"></td>
+                    <td th:text="${queue.machine.price}"></td>
+                    <td th:text="${queue.w_status}"></td>
+                    <!-- Assuming washingStatus is the correct property -->
                 </tr>
             </tbody>
 
