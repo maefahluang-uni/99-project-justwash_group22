@@ -1,10 +1,10 @@
 steps:
  # Build the container image
  - name: 'gcr.io/cloud-builders/docker'
-   args: [ 'build', '-t', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/webdev-dockers/lab-cd:$COMMIT_SHA', '.' ]
+   args: [ 'build', '-t', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/justwash22-dockers/lab-cd:$COMMIT_SHA', '.' ]
  # Push the container image to Artifact Registry
  - name: 'gcr.io/cloud-builders/docker'
-   args: ['push', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/webdev-dockers/lab-cd:$COMMIT_SHA']
+   args: ['push', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/justwash22-dockers/lab-cd:$COMMIT_SHA']
  # Deploy container image to Cloud Run
  - name: 'gcr.io/cloud-builders/gcloud'
    entrypoint: gcloud
@@ -13,7 +13,7 @@ steps:
    - 'deploy'
    - 'lab-cd'
    - '--image'
-   - 'us-central1-docker.pkg.dev/${_PROJECT_ID}/webdev-dockers/lab-cd:$COMMIT_SHA'
+   - 'us-central1-docker.pkg.dev/${_PROJECT_ID}/justwash22-dockers/lab-cd:$COMMIT_SHA'
    - '--region'
    - 'us-central1'
    - '--allow-unauthenticated'
@@ -22,7 +22,7 @@ steps:
    - '--port'
    - '8100'
 images:
- - 'us-central1-docker.pkg.dev/${_PROJECT_ID}/webdev-dockers/lab-cd'
+ - 'us-central1-docker.pkg.dev/${_PROJECT_ID}/justwash22-dockers/lab-cd'
 
 substitutions:
-  _PROJECT_ID: 'xxxxxxx'
+  _PROJECT_ID: 'justwash22'
