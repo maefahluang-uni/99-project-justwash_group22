@@ -56,7 +56,7 @@ public class MachineController {
     @PostMapping("/book/machines/{machineId}")
     public String reserveQueue(@ModelAttribute Reservation reservation, @PathVariable Long machineId,
             HttpServletRequest request) {
-        // Initialize a new Queue object if not provided in the form
+        //Initialize a new Queue object if not provided in the form
         if (reservation.getQueue() == null) {
             reservation.setQueue(new Queue());
         }
