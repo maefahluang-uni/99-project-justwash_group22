@@ -1,13 +1,18 @@
 package th.mfu.domain;
 
+import java.time.LocalTime;
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.GeneratorType;
 
 @Entity
 public class Queue {
@@ -15,11 +20,33 @@ public class Queue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String number;
+    private String username;
     private boolean booked;
+    private Date date;
+    private LocalTime time;
+    private String w_status;
+    
+    @OneToMany(mappedBy = "queue", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    private WashingMachine washingMachine;
+    @ManyToOne
+    @JoinColumn(name = "machine_id")
+    private Machine machine;
+
+    public Queue (){
+    }
+
+    public Queue(Long id, String username, boolean booked, Date date, LocalTime time, String w_status,
+            List<Reservation> reservations, Machine machine) {
+        this.id = id;
+        this.username = username;
+        this.booked = booked;
+        this.date = date;
+        this.time = time;
+        this.w_status = w_status;
+        this.reservations = reservations;
+        this.machine = machine;
+    }
 
     public Long getId() {
         return id;
@@ -29,12 +56,12 @@ public class Queue {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public boolean isBooked() {
@@ -45,16 +72,44 @@ public class Queue {
         this.booked = booked;
     }
 
-    public WashingMachine getWashingMachine() {
-        return washingMachine;
+    public Date getDate() {
+        return date;
     }
 
-    public void setWashingMachine(WashingMachine washingMachine) {
-        this.washingMachine = washingMachine;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    
-    
-    
-    
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
+    public String getW_status() {
+        return w_status;
+    }
+
+    public void setW_status(String w_status) {
+        this.w_status = w_status;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public Machine getMachine() {
+        return machine;
+    }
+
+    public void setMachine(Machine machine) {
+        this.machine = machine;
+    }
+
 }

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    body {
+        background: linear-gradient(180deg, #fbffe1 -0%, #83c5e0 62.69%);
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 54px;
+        font-weight: bolder;
+        margin-top: -20px;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        border-collapse: separate;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    th {
+        background-color: #8dc7de;
+        font-weight: bold;
+    }
+
+    .btn {
+        margin-right: 7px;
+        border-radius: 10px;
+        color: black;
+        font-size: 16px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .btn-danger {
+        background-color: #FCBACB;
+        border-style: none;
+    }
+
+    .btn-info:hover {
+        filter: brightness(90%);
+    }
+
+    .btn-danger:hover {
+        background-color: #fa9cb3;
+    }
+
+    .btn-info:active,
+    .btn-danger:active {
+        filter: brightness(80%);
+    }
+
+    .input-group {
+        margin-top: -15px;
+    }
+
+    .input-group-text {
+        border-radius: 10px;
+        width: fit-content;
+        background-color: #FCBACB;
+        color: black;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+</style>
+<header class="bg">
+    <div class="d-flex justify-content-between align-items-center py-3 ">
+        <div class="logo d-flex align-items-center ">
+            <img src="/src/image/logo.png" height="70" alt="">
+            <h3 class="mb-0 ml-2">Justwash</h3>
+        </div>
+    </div>
+</header>
+
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Queue List</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Reservation Time</th>
+                    <th>Username</th>
+                    <th>Machine ID</th>
+                    <th>Capacity(kg.)</th>
+                    <th>Washing Time(min)</th>
+                    <th>Price(bath)</th>
+                    <th>Washing Status</th>
+                    <th> </th>
+                    <th> </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Use Thymeleaf to iterate over the queues and display them -->
+                <tr th:each="queue : ${queues}">
+                    <td th:text="${#temporals.format(queue.time, 'HH:mm')}">20:00</td>
+                    <td th:text="${queue.username}">Backache</td>
+                    <td th:text="${queue.machine.id}">M123</td>
+                    <td th:text="${queue.machine.capacity}">15</td>
+                    <td th:text="${queue.machine.w_time}">55</td>
+                    <td th:text="${queue.machine.price}">40</td>
+                    <td th:text="${queue.w_status}">In use</td>
+                    <td>
+                        <a class="btn btn-danger"
+                            th:href="@{'/delete-queue/' + ${queue.id} + '/' + ${queue.machine.id}}">Cancel</a>
+                    </td>
+                    <td>
+                        <form th:action="@{'/queues/' + ${queue.id} + '/updateStatus'}" method="post" id="statusForm"
+                            data-queue-id="${queue.id}" class="mt-3">
+                            <div class="input-group">
+                                <label for="statusSelect" class="input-group-text">Select status:</label>
+                                <select id="statusSelect" name="status" class="form-select">
+                                    <option value="In use">In Use</option>
+                                    <option value="Confirm">Confirm</option>
+                                </select>
+                                <button type="submit" class="btn btn-info mt-2">Submit</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <a class="btn btn-info" th:href="@{/machines}">Back to Machine List</a>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

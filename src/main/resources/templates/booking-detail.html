@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS for dark theme -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/png" href="/src/image/logo.png">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    body {
+        background: #fbffe1;
+        height: 100vh;
+
+    }
+
+    nav {
+        display: inline;
+
+    }
+
+    nav a {
+        text-decoration: none;
+        font-size: 1.3rem;
+        font-family: 'Times New Roman', Times, serif font-weight bold;
+        letter-spacing: 1px;
+        color: black;
+        position: relative;
+    }
+
+    nav a::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        opacity: 0%;
+        height: 5px;
+        background-image: linear-gradient(180deg, #fbffe1 -0%, #83c5e0 62.69%);
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 25px;
+        transition: .4s;
+    }
+
+    nav a:hover::after {
+        width: 50%;
+        opacity: 1;
+    }
+
+    .card-body {
+        background-color: #8dc7de;
+        border-radius: 15px;
+        width: 100%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 15px;
+    }
+    .card {
+        
+        border-radius: 15px;
+        width: 100%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    h2 {
+        font-size: 50px;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bolder;
+    }
+
+    .card-text {
+        font-size: 18px;
+    }
+
+    
+</style>
+<body>
+    <!-- logo -->
+    <header class="bg">
+        <div class="d-flex justify-content-between align-items-center py-3 ">
+          <div class="logo d-flex align-items-center ">
+            <img src="/src/image/logo.png" height="70" alt="Justwash Logo">
+            <h3 class="mb-0 ml-2">Justwash</h3>
+          </div>
+          <nav>
+            <a href="homePage.html" class="text-dark mr-3"><i class='bx bxs-home'></i><span class="ml-1=">Home</span></a>
+                <a href="Board.html" class="text-dark mr-3"><i class='bx bxs-bell-ring'></i><span class="ml-1">Status</span></a>
+          </nav>
+        </div>
+      </header>
+
+    <div class="mx-5">
+        <h2>Booking Details</h2>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text"><strong>Username:</strong> <span th:text="${reservation.username}"></span></p>
+                <p class="card-text"><strong>Date(yyyy-MM-dd):</strong> <span th:text="${#dates.format(reservation.date, 'yyyy-MM-dd')}"></span></p>
+                <p class="card-text"><strong>Time:</strong> <span th:utext="${reservation.time}"></span></p>
+                <p class="card-text"><strong>Machine ID:</strong> <span th:text="${reservation.queue.machine.id}"></span></p>
+                <p class="card-text"><strong>Capacity:</strong> <span th:text="${reservation.queue.machine.capacity}"></span></p>
+                <p class="card-text"><strong>Washing Time:</strong> <span th:text="${reservation.queue.machine.w_time}"></span></p>
+                <p class="card-text"><strong>Price:</strong> <span th:text="${reservation.queue.machine.price}"></span></p>
+            </div>
+        </div>
+        <a id="back" class="btn btn-info mt-3" href="/book">Back</a>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

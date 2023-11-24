@@ -1,48 +1,46 @@
 package th.mfu.domain;
 
+import java.time.LocalTime;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Reservation {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date date;
     private String username;
-    private String password;
-    private String email;
-
-    // public Reservation(Long id, Date date, String reserve_username, String reserve_password, String reserve_email,User user) {
-    //     this.id = id;
-    //     this.date = date;
-    //     username = reserve_username;
-    //     password = reserve_password;
-    //     email = reserve_email;
-    //     this.user = user;
-    // }
-
-    @OneToOne(cascade = CascadeType.MERGE)
+    private Date date;
+    private LocalTime time;
+    
+    @ManyToOne
+    @JoinColumn(name = "queue_id")
     private Queue queue;
+    
+    
+    public Reservation(Long id, String username, Date date, LocalTime time, Queue queue) {
+        this.id = id;
+        this.username = username;
+        this.date = date;
+        this.time = time;
+        this.queue = queue;
+    }
+    public Reservation(){
+        
+    }
     public Long getId() {
         return id;
     }
     public void setId(Long id) {
         this.id = id;
-    }
-    public Date getDate() {
-        return date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
     }
     public String getUsername() {
         return username;
@@ -50,17 +48,18 @@ public class Reservation {
     public void setUsername(String username) {
         this.username = username;
     }
-    public String getPassword() {
-        return password;
+    public Date getDate() {
+        return date;
     }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDate(Date date) {
+        this.date = date;
     }
-    public String getEmail() {
-        return email;
+    public LocalTime getTime() {
+        return time;
     }
-    public void setEmail(String email) {
-        this.email = email;
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
     public Queue getQueue() {
         return queue;
@@ -68,7 +67,5 @@ public class Reservation {
     public void setQueue(Queue queue) {
         this.queue = queue;
     }
-
-    
     
 }
