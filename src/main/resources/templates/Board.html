@@ -8,107 +8,76 @@
     <title>Add Machine</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-     <!-- Include Bootstrap CSS -->
-     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-     <!-- Include Font Awesome for icons -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-     <!-- boxicon -->
-     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS for the countdown timer -->
     <style>
         * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Times New Roman', Times, serif;
-      }
-      body {
-        background:#fbffe1;
-        height: 100vh;
-    
-      }
-      nav {
-        display: inline;
-    
-      }
-    
-      nav a {
-        text-decoration: none;
-        font-size: 1.3rem;
-        font-family: 'Times New Roman', Times, serif font-weight bold;
-        letter-spacing: 1px;
-        color: black;
-        position: relative;
-      }
-    
-      nav a::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        opacity: 0%;
-        height: 5px;
-        background-image: linear-gradient(180deg, #fbffe1 -0%, #83c5e0 62.69%);
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 25px;
-        transition: .4s;
-      }
-    
-      nav a:hover::after {
-        width: 50%;
-        opacity: 1;
-      }
-      .bg{
-        background-color:#f2f7d3;
-      }
-      h1 {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background: #fbffe1;
+            height: 100vh;
+
+        }
+
+        h1 {
             color: #333;
             text-align: center;
             font-family: 'Times New Roman', Times, serif;
             font-size: 52px;
         }
+
         table {
             width: 50%;
             margin-top: 20px;
             border-collapse: collapse;
-            border-collapse:separate;
+            border-collapse: separate;
         }
-        
+
         td {
             border: 1px solid #ddd;
             text-align: center;
             white-space: nowrap;
         }
+
         th {
             background-color: #8dc7de;
             text-align: center;
-    
+
         }
+
         .btn-primary {
             background-color: #fcbacb;
             color: black;
             border-radius: 10px;
             border-style: none;
-            
+
         }
+
         .btn-primary:hover {
             filter: brightness(90%);
         }
-    
+
         .btn-primary:active {
             filter: brightness(80%);
         }
-        .fixed-bottom{
-            background-color:#f2f7d3;
+
+        .fixed-bottom {
+            background-color: #f2f7d3;
         }
-        #countdown{
+
+        #countdown {
             text-align: center;
             font-size: 30px;
-            color:red;
-            
+            color: red;
+
         }
-    </style> 
+    </style>
 </head>
 
 <body>
@@ -167,15 +136,9 @@
     <header class="bg">
         <div class="d-flex justify-content-between align-items-center py-3 ">
             <div class="logo d-flex align-items-center ">
-                <img src="/src/image/logo.png" height="70" alt="Justwash Logo">
                 <h3 class="mb-0 ml-2">Justwash</h3>
             </div>
-            <nav>
-                <a href="homePage.html" class="text-dark mr-3"><i class='bx bxs-home'></i><span
-                        class="ml-1=">Home</span></a>
-                <a href="Board.html" class="text-dark mr-3"><i class='bx bxs-bell-ring'></i><span
-                        class="ml-1">Status</span></a>
-            </nav>
+
         </div>
     </header>
     <!-- container -->
@@ -211,10 +174,10 @@
         </table>
         <a class="btn btn-primary" th:href="@{/book}">Back to Book</a>
     </div>
-<!-- coundown -->
-<div class="container mt-5">
-    <h2 id="countdown">Please make a payment and confirm queue at the laundry shop in 15 minutes</h2>
-</div>
+    <!-- coundown -->
+    <div class="container mt-5">
+        <h2 id="countdown">Please make a payment and confirm queue at the laundry shop in 15 minutes</h2>
+    </div>
 </body>
 
 </html>

@@ -1,131 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Make a Reservation</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <!-- Include Bootstrap CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Include Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Custom CSS for dark theme -->
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Reservation</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Times New Roman', Times, serif;
-  }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Times New Roman', Times, serif;
+    }
 
-  body {
-      background: #fbffe1;
-      height: 100vh;
+    body {
+        background: #fbffe1;
+        height: 100vh;
 
-  }
+    }
 
-  nav {
-      display: inline;
+    h1 {
+        text-align: center;
+    }
 
-  }
+    form {
+        width: 50%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-  nav a {
-      text-decoration: none;
-      font-size: 1.3rem;
-      font-family: 'Times New Roman', Times, serif font-weight bold;
-      letter-spacing: 1px;
-      color: black;
-      position: relative;
-  }
+    .form-control {
+        border-radius: 40px;
+    }
 
-  nav a::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      opacity: 0%;
-      height: 5px;
-      background-image: linear-gradient(180deg, #fbffe1 -0%, #83c5e0 62.69%);
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 25px;
-      transition: .4s;
-  }
-
-  nav a:hover::after {
-      width: 50%;
-      opacity: 1;
-  }
-
-  h1 {
-      text-align: center;
-  }
-
-  form {
-      width: 50%;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-  }
-
-  .form-control {
-      border-radius: 40px;
-  }
-
-   .btn1 {
-      background: #fcbacb;
-      border-style: none;
-      border-radius: 4px;
-      padding: 7px;
-      display: flex;
-      margin-left: auto;
-      margin-top: -37px;
-  } 
-
-  .bg {
-      background-color: #f2f7d3;
-  }
+    .btn1 {
+        background: #fcbacb;
+        border-style: none;
+        border-radius: 4px;
+        padding: 7px;
+        display: flex;
+        margin-left: auto;
+        margin-top: -37px;
+    }
 </style>
+
 <body>
- <!-- logo and navigation -->
- <header class="bg">
-  <div class="d-flex justify-content-between align-items-center py-3 ">
-      <div class="logo d-flex align-items-center ">
-          <img src="/image/logo.png" height="70" alt="Justwash Logo">
-          <h3 class="mb-0 ml-2">Justwash</h3>
-      </div>
-      <nav>
-          <a href="homePage.html" class="text-dark mr-3"><i class='bx bxs-home'></i><span class="ml-1=">Home</span></a>
-      <a href="Board.html" class="text-dark mr-3"><i class='bx bxs-bell-ring'></i><span class="ml-1">Status</span></a>
-      </nav>
-  </div>
-</header>
+    <!-- logo and navigation -->
+    <header>
+        <div class="d-flex justify-content-between align-items-center py-3 ">
+            <h3 class="mb-0 ml-2">Justwash</h3>
+        </div>
+    </header>
 
-<div class="container mt-5">
-  <h1>Make a Booking</h1>
-  <form th:action="@{/book/machines/{id}(id=${machine.id})}" th:object="${reservation}" method="post">
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" class="form-control" id="username" th:field="*{username}" required>
-      <label for="date">Date:</label>
-      <input type="date" class="form-control" id="date" th:field="*{date}" required>
-      <label for="timepicker">Time:</label>
-      <input type="time" class="form-control" id="timepicker" name="timepicker">
+    <div class="container mt-5">
+        <h1>Make a Booking</h1>
+        <form th:action="@{/book/machines/{id}(id=${machine.id})}" th:object="${reservation}" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" th:field="*{username}" required>
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" th:field="*{date}" required>
+                <label for="timepicker">Time:</label>
+                <input type="time" class="form-control" id="timepicker" name="timepicker">
+            </div>
+            <a class="btn btn-info" th:href="@{/book}">Back</a>
+            <form action="/book/machines/{machineId}" method="post" th:object="${reservation}">
+                <button type="submit" class="btn1">Submit</button>
+            </form>
+        </form>
     </div>
-    <a class="btn btn-info" th:href="@{/book}">Back</a> 
-    <form action="/book/machines/{machineId}" method="post" th:object="${reservation}">
-      <button type="submit" class="btn1">Submit</button>
-    </form>
-  </form>
-</div>
 
-<!-- Bootstrap JS and Popper.js -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
