@@ -27,6 +27,7 @@ import th.mfu.repository.MachineRepository;
 import th.mfu.repository.QueueRepository;
 import th.mfu.repository.ReservationRepository;
 
+
 @Controller
 public class MachineController {
     @Autowired
@@ -169,5 +170,4 @@ public class MachineController {
         model.addAttribute("machine", machine);
         return "add-machine-form";
     }
-    
 }
