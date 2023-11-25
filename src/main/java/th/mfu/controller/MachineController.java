@@ -163,5 +163,11 @@ public class MachineController {
         model.addAttribute("queues", queues);
         return "queue-status";
     }
+    @GetMapping("/machines/{id}")
+    public String getMachine(Model model, @PathVariable Long id) {
+        Machine machine = machineRepo.findById(id).get();
+        model.addAttribute("machine", machine);
+        return "add-machine-form";
+    }
     
 }

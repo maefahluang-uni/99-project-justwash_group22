@@ -116,6 +116,7 @@
                     <td th:text="${machine.m_status}">In use</td>
                     <td>
                         <a class="btn btn-info" th:href="@{/machines/{id}/queues(id=${machine.id})}">View Queue</a>
+                        <a class="btn btn-info" th:href="@{/machines/{id}(id=${machine.id})}">Update</a>
                         <a class="btn btn-danger" th:href="@{/delete-machine/{id}(id=${machine.id})}">Delete</a>
                     </td>
                 </tr>
