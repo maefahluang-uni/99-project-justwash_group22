@@ -8,19 +8,77 @@
 
     <!-- Custom CSS for the countdown timer -->
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background: #fbffe1;
+            height: 100vh;
+
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 52px;
+        }
+
+        table {
+            width: 50%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border-collapse: separate;
+        }
+
+        td {
+            border: 1px solid #ddd;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        th {
+            background-color: #8dc7de;
+            text-align: center;
+
+        }
+
+        .btn-primary {
+            background-color: #fcbacb;
+            color: black;
+            border-radius: 10px;
+            border-style: none;
+
+        }
+
+        .btn-primary:hover {
+            filter: brightness(90%);
+        }
+
+        .btn-primary:active {
+            filter: brightness(80%);
+        }
+
+        .fixed-bottom {
+            background-color: #f2f7d3;
+        }
+
         #countdown {
-            font-size: 18px;
-            font-weight: bold;
+            text-align: center;
+            font-size: 30px;
             color: red;
+
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container mt-5">
-        <h2 id="countdown">Please make a payment and confirm queue at the laundry shop in 15 minutes</h2>
-    </div>
+  
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -106,7 +164,10 @@
         </table>
         <a class="btn btn-primary" th:href="@{/book}">Back to Book</a>
     </div>
-
+    
+    <div class="container mt-5">
+        <h2 id="countdown">Please make a payment and confirm queue at the laundry shop in 15 minutes</h2>
+    </div>
 
 </body>
 
