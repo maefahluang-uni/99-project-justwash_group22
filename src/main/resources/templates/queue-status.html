@@ -25,7 +25,8 @@
             color: #333;
             text-align: center;
             font-family: 'Times New Roman', Times, serif;
-            font-size: 52px;
+            font-size: 54px;
+            font-weight: bolder;
         }
 
         table {
@@ -56,11 +57,7 @@
         }
 
         .btn-primary:hover {
-            filter: brightness(90%);
-        }
-
-        .btn-primary:active {
-            filter: brightness(80%);
+            background-color: #fd98b1;
         }
 
         .fixed-bottom {
@@ -68,6 +65,7 @@
         }
 
         #countdown {
+            margin-bottom: 15px;
             text-align: center;
             font-size: 30px;
             color: red;
@@ -164,9 +162,9 @@
         </table>
         <a class="btn btn-primary" th:href="@{/book}">Back to Book</a>
     </div>
-    
+
     <div class="container mt-5">
-        <h2 id="countdown">Please make a payment and confirm queue at the laundry shop in 15 minutes</h2>
+        <h2 id="countdown">**Please make a payment and confirm queue at the laundry shop in 15 minutes</h2>
     </div>
 
 </body>
