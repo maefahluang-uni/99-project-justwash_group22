@@ -2,11 +2,11 @@ Project Name
 =============
 JustWash_group22
 
-Group Description
+Project Description
 =============
 The "JustWash" project was proposed to tackle laundry scheduling issues and inconvenience. It aims to offer benefits like improved convenience, optimized resource utilization, time savings, maintenance tracking, and enhanced customer satisfaction. This project seeks to make laundry routines more efficient and enjoyable for users while benefiting laundry facility operators. It creates a website for booking laundry. To provide customers with quick convenience in booking an appointment to do laundry. according to the reserved date and time for the time of coming to the work site. So it won't be wasted.
 
-Group Members
+Team Members
 =============
 6531503036_Miss Theema Tampetch_https://github.com/Code036
 
