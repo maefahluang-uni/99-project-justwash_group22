@@ -4,7 +4,7 @@ JustWash_group22
 
 Project Description
 =============
-The "JustWash" project was proposed to tackle laundry scheduling issues and inconveniences. It aims to offer benefits like improved convenience, optimized resource utilization, time savings, maintenance tracking, and enhanced customer satisfaction. This project seeks to make laundry routines more efficient and enjoyable for users while benefiting laundry facility operators. It creates a website for booking laundry. to provide customers with quick convenience in booking an appointment to do laundry. according to the reserved date and time for coming to the work site. So it won't be wasted.
+The "JustWash" initiative has been proposed to address laundry scheduling issues and inconveniences. The goal is to provide benefits such as improved convenience. Maximum use of resources saves time. Maintenance tracking and increased customer satisfaction This project aims to make laundry routines more efficient and enjoyable for users. At the same time, it is beneficial to laundry facility operators. Create a website for booking laundry services. To provide customers with convenience and speed in booking laundry queues According to the reserved date and time for coming to the workplace. So it won't be a waste of time.
 
 Team Members
 =============
